@@ -1,3 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<select id="read" resultType="org.hs.domain.EmployeeVO"> 
-select * from tbl_board where empNum = #{empNum} </select>
+
+<mapper namespace="org.hs.mapper.EmployeeMapper">
+	
+	<select id="getList" resultType="org.hs.domain.EmployeeVO">
+		<![CDATA[ select * from EMPLOYEE where empNum > 0 and rownum <= 100 ]]>
+	</select>
+	<!-- <insert id = "insert"> 
+		insert into Employee (empNum,empName,job,phoneNum,hireDatem,email,annualLeaveNum,Address,workDate,birthDate,adminNum,authNum,deptNum,pw)
+		values(seq_board.nextval, #{})
+	
+	</insert> -->
+		
+	<select id="read" resultType="org.hs.domain.EmployeeVO"> 
+		select * from EMPLOYEE where empNum = #{empNum} 
+	</select>
+	<delete id="delete">delete EMPLOYEE where empNUm=#{empNum}</delete>
+</mapper>
