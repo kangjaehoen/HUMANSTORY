@@ -4,26 +4,36 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.hs.mapper.SystemMapper">
 
+<insert id="insertEmpInfo">
+    INSERT INTO employees (empNum, empName, pw, job, phoneNum, annualLeaveNum,workDate,birthDate, adminNum, authNum, deptNum) 
+    VALUES (empNum_seq.NEXTVAL, #{empName},#{pw}, #{job}, #{phoneNum}, #{annualLeaveNum}, #{workDate},#{birthDate}, #{adminNum}, #{authNum}, #{deptNum})
+</insert>
 
-<!--   <resultMap type="org.hs.domain.EmployeeVO" id="empLeaveMap">
-    <id property="userid" column="userid"/>
-    <result property="userid" column="userid"/>
-    <result property="userpw" column="userpw"/>
-    <result property="userName" column="username"/>
-    <result property="regDate" column="regdate"/>
-    <result property="updateDate" column="updatedate"/>
-    <collection property="authList" resultMap="authMap">
-    </collection> 
-  </resultMap>
-  
-  <resultMap type="org.zerock.domain.AuthVO" id="authMap">
-    <result property="userid" column="userid"/>
-    <result property="auth" column="auth"/>
-    
-  <select id="read" resultMap="memberMap">
-  </select>
-  </resultMap> -->
-  
-   
+<update id="grantAnnualLeave">
+    UPDATE employees
+    SET annualLeaveNum = 
+        CASE 
+            WHEN workDate > 365 THEN 
+                CASE 
+                    WHEN workDate >= 730 THEN LEAST(25, 16 + FLOOR((workDate - 730) / 730) + LEAST(1, FLOOR((workDate - 730) / 730)))
+                    ELSE LEAST(15, 12 + FLOOR((workDate - 365) / 730) + LEAST(1, FLOOR((workDate - 365) / 730)))
+                END
+            ELSE annualLeaveNum 
+        END
+    WHERE empNum = #{empNum}
+</update>
+
+<update id="">
+
+
+</update>
+
+
+
+
+	
+
+
+
 
 </mapper>

@@ -17,9 +17,9 @@ public class EmployeeVO {
    private String email;
    private int annualLeaveNum;
    private String address;
-   private int workDate;
+   private int workDate; // 근무일
    private int birthDate;
-   private int adminId;
+   private int adminNum;
    private int authNum;
    private int deptNum;
 }
