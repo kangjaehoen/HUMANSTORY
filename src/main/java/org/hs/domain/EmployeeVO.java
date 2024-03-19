@@ -8,16 +8,16 @@ import lombok.Data;
 public class EmployeeVO {
 	private int empNum;
 	private String empName;
+	private String pw;
 	private String job;
 	private int phoneNum;
-	private Date hireDate;
-	private String email;
 	private int annualLeaveNum;
-	private String address;
 	private int workDate;
 	private int birthDate;
-	private String pw;
-	private int deptNum;
 	private int adminNum;
 	private int authNum;
+	private int deptNum;
+	private Date hireDate;
+	private String email;
+	private String address;
 }
