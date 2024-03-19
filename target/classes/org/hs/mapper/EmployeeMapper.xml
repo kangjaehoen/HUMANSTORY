@@ -1,4 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<select id="getList" resultType="org.zerock.domain.BoardVO">
-	<![CDATA[ select * from tbl_board where bno > 0 and rownum <= 100 ]]>
-</select>
+<select id="read" resultType="org.hs.domain.EmployeeVO"> 
+select * from tbl_board where empNum = #{empNum} </select>
