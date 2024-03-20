@@ -1,23 +1,25 @@
 package org.hs.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class EmployeeVO {
-	private int empNum;
-	private String empName;
-	private String pw;
-	private String job;
-	private int phoneNum;
-	private int annualLeaveNum;
-	private int workDate;
-	private int birthDate;
-	private int adminNum;
-	private int authNum;
-	private int deptNum;
-	private Date hireDate;
-	private String email;
-	private String address;
+   private int empNum;
+   private String empName;
+   private String pw;
+   private String job; // 직책임.
+   private int phoneNum;
+   private Date hiredate;
+   private String email;
+   private int annualLeaveNum;
+   private String address;
+   private int workDate; // 근무일
+   private int birthDate;
+   private int adminNum;
+   private int authNum;
+   private int deptNum;
 }

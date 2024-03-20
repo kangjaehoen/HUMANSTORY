@@ -1,11 +1,7 @@
 package org.hs.mapper;
 
-
 import org.hs.domain.EmployeeVO;
 
-public interface EmployeeMapper {
-	
-	public void insert(EmployeeVO board);
-	
-	
+public interface EmployeeMapper{
+	public int insertEmpInfo(EmployeeVO emp);
 }
