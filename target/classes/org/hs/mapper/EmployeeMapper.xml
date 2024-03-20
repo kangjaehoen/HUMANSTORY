@@ -4,10 +4,43 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.hs.mapper.EmployeeMapper">
 
+<select id="getList" resultType="org.hs.domain.EmployeeVO">
+	<![CDATA[
+		select*from employee where empNum>0
+	]]>
+</select>
+
+
+
+
+
+<select id="read" resultType="org.hs.domain.EmployeeVO">
+	select*from employee where empNum=#{empNum}
+</select>
+
 <insert id="insertEmpInfo">
     INSERT INTO employee (empNum, empName, pw, job, phoneNum, annualLeaveNum,workDate,birthDate, adminNum, authNum, deptNum) 
     VALUES (empNum_seq.NEXTVAL, #{empName},#{pw}, #{job}, #{phoneNum}, #{annualLeaveNum}, #{workDate},#{birthDate}, #{adminNum}, #{authNum}, #{deptNum})
 </insert>
 
+<update id="update">
+	update employee set
+	empName=#{empName},
+	pw=#{pw},
+	job=#{job},
+	phoneNum=#{phoneNum},
+	annualLeaveNum=#{annualLeaveNum},
+	workDate=#{workDate},
+	birthDate=#{birthDate},
+	adminNum=#{adminNum},
+	authNum=#{authNum},
+	deptNum=#{deptNum}
+	
+	where empNum=#{empNum}
+</update>
+
+<delete id="delete">
+	delete employee where empNum=#{empNum}
+</delete>
 
 </mapper>
