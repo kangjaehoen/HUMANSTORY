@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class EmpMapperJUnitTest {
 	@Autowired
-	private EmployeeMapper mapper;
+	private EmpMapper mapper;
 //	
 //	@Test
 //	public void test() {

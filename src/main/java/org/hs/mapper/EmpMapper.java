@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hs.domain.EmployeeVO;
 
-public interface EmployeeMapper{
+public interface EmpMapper{
 
 	public List<EmployeeVO> getList();
 	

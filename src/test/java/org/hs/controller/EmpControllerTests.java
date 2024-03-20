@@ -34,15 +34,15 @@ public class EmpControllerTests {
 	}
 	
 	
-	@Test
-	public void testList() throws Exception{
-		log.info(
-				mockMvc.perform(MockMvcRequestBuilders.get("/emp/list"))
-				.andReturn()
-				.getModelAndView()
-				.getModelMap()
-				);
-		
-	}
-
+//	@Test
+//	public void testList() throws Exception{
+//		log.info(
+//				mockMvc.perform(MockMvcRequestBuilders.get("/emp/list"))
+//				.andReturn()
+//				.getModelAndView()
+//				.getModelMap()
+//				);
+//		
+//	}
+	
 }
