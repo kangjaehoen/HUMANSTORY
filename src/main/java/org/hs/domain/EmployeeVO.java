@@ -13,7 +13,7 @@ public class EmployeeVO {
    private String pw;
    private String job; // Á÷Ã¥ÀÓ.
    private int phoneNum;
-   private Date hiredate;
+   private Date hireDate;
    private String email;
    private int annualLeaveNum;
    private String address;
@@ -22,4 +22,6 @@ public class EmployeeVO {
    private int adminNum;
    private int authNum;
    private int deptNum;
+   private DeptVO department; 
+   
 }

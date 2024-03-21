@@ -21,6 +21,7 @@
       <div class="panel-body">
 
         <form role="form" action="/emp/register" method="post">
+          
           <div class="form-group">
 	            <label>empName</label> 
 	            <input class="form-control" name='empName'>
@@ -38,6 +39,10 @@
           <div class="form-group">
             	<label>phoneNum</label>
             	<input class="form-control" name='phoneNum'>
+          </div>
+          <div class="form-group">
+            	<label>hireDate</label>
+            	<input class="form-control" name='hireDate'>
           </div>
           <div class="form-group">
             	<label>annualLeaveNum</label>

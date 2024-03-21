@@ -60,7 +60,7 @@ public class EmpServiceJUnitTest {
 //	
 //	@Test
 //	public void testDelete() {
-//		log.info("result result:"+service.remove(4));
+//		log.info("result result:"+service.remove(10));
 //	}
 //	
 //	

@@ -10,7 +10,20 @@
 	]]>
 </select>
 
+<resultMap id="EmpDeptResultMap" type="org.hs.domain.EmployeeVO">
+    <id property="empNum" column="EMPNUM"/>
+    <result property="empName" column="EMPNAME"/>
+    <association property="department" javaType="org.hs.domain.DeptVO">
+        <result property="deptName" column="DEPTNAME"/>
+    </association>
+</resultMap>
 
+<select id="EmpjoinDept" resultMap="EmpDeptResultMap">
+	SELECT e.EMPNUM, e.EMPNAME, d.DEPTNAME
+	FROM Employee e
+	JOIN DEPARTMENTS d ON e.DEPTNUM = d.DEPTNUM
+	
+</select>
 
 
 
@@ -19,8 +32,8 @@
 </select>
 
 <insert id="insertEmpInfo">
-    INSERT INTO employee (empNum, empName, pw, job, phoneNum, annualLeaveNum,workDate,birthDate, adminNum, authNum, deptNum) 
-    VALUES (empNum_seq.NEXTVAL, #{empName},#{pw}, #{job}, #{phoneNum}, #{annualLeaveNum}, #{workDate},#{birthDate}, #{adminNum}, #{authNum}, #{deptNum})
+    INSERT INTO employee (empNum, empName, pw, job, phoneNum,hireDate, annualLeaveNum,workDate,birthDate, adminNum, authNum, deptNum) 
+    VALUES (empNum_seq.NEXTVAL, #{empName},#{pw}, #{job}, #{phoneNum},#{hireDate}, #{annualLeaveNum}, #{workDate},#{birthDate}, #{adminNum}, #{authNum}, #{deptNum})
 </insert>
 
 <update id="update">
@@ -29,6 +42,7 @@
 	pw=#{pw},
 	job=#{job},
 	phoneNum=#{phoneNum},
+	hireDate=#{hireDate},
 	annualLeaveNum=#{annualLeaveNum},
 	workDate=#{workDate},
 	birthDate=#{birthDate},

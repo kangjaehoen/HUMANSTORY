@@ -29,17 +29,21 @@
 					<thead>
 						<tr>
 							<th>체크박스 </th>
-							<th>#번호</th>
+							<th>번호</th>
 							<th>사원명</th>
 							<th>비밀번호</th>
 							<th>직책</th>
 							<th>휴대폰번호</th>
+							<th>고용일</th>
 							<th>연차일수</th>
 							<th>근속기간</th>
 							<th>주민번호</th>
+							<th>부서명</th>
+							<!-- 
 							<th>관리자번호</th>
 							<th>권한번호</th>
 							<th>부서번호</th>
+							 -->
 						</tr>
 					</thead>
 
@@ -51,13 +55,16 @@
 							<td><c:out value="${emp.pw}" /></td>
 							<td><c:out value="${emp.job}" /></td>
 							<td><c:out value="${emp.phoneNum}" /></td>
+							<td><fmt:formatDate value="${emp.hireDate}" pattern="yyyy-MM-dd" /></td>
 							<td><c:out value="${emp.annualLeaveNum}" /></td>
 							<td><c:out value="${emp.workDate}" /></td>
 							<td><c:out value="${emp.birthDate}" /></td>
+							<td><c:out value="${emp.department.deptName}" /></td>
+							<%-- 
 							<td><c:out value="${emp.adminNum}" /></td>
 							<td><c:out value="${emp.authNum}" /></td>
 							<td><c:out value="${emp.deptNum}" /></td>
-							
+							 --%>
 							<%-- 
 							<td><fmt:formatDate pattern="yyyy-MM-dd"
 									value="${emp.regdate}" /></td>
@@ -270,12 +277,12 @@
 
 											e.preventDefault();
 											actionForm
-													.append("<input type='hidden' name='bno' value='"
+													.append("<input type='hidden' name='empNum' value='"
 															+ $(this).attr(
 																	"href")
 															+ "'>");
 											actionForm.attr("action",
-													"/board/get");
+													"/emp/get");
 											actionForm.submit();
 
 										});

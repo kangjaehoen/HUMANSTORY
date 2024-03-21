@@ -2,6 +2,9 @@ package org.hs.mapper;
 
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.hs.domain.EmployeeVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,18 +28,25 @@ public class EmpMapperJUnitTest {
 	
 	@Test
 	public void testInsertEmpInfo() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR, 2024);
+		calendar.set(Calendar.MONTH, Calendar.MARCH);
+		calendar.set(Calendar.DAY_OF_MONTH, 25);
+		Date hireDate = calendar.getTime();
+		
 	    EmployeeVO emp = new EmployeeVO();
 	    emp.setEmpName("ddd");
 	    emp.setJob("ĸƾ");
 	    emp.setPw("son7Hoor");
 	    emp.setPhoneNum(7777777);
+	    emp.setHireDate(hireDate);
 	    emp.setAnnualLeaveNum(4);
 	    emp.setBirthDate(930712);
 	    emp.setAdminNum(7);
 	    emp.setAuthNum(7);
 	    emp.setDeptNum(7);
 	    emp.setWorkDate(790);
-
+	    
 	    mapper.insertEmpInfo(emp);
 	}
 	

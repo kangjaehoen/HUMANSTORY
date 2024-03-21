@@ -15,4 +15,6 @@ public interface EmpMapper{
 	public int delete(int empNum);
 	
 	public int update(EmployeeVO emp);
+	
+	public String EmpjoinDept();
 }

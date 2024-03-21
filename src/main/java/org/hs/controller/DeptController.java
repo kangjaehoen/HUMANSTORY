@@ -1,7 +1,7 @@
 package org.hs.controller;
 
-import org.hs.domain.EmployeeVO;
-import org.hs.service.EmpService;
+import org.hs.domain.DeptVO;
+import org.hs.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,16 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/emp/*")
+@RequestMapping("/dept/*")
 @Log4j
-public class EmpController {
+public class DeptController {
 	@Autowired
-	private EmpService service;
+	private DeptService service;
 	
 	@GetMapping("/list")
 	public void list(Model model) {
@@ -32,36 +30,35 @@ public class EmpController {
 		
 	}
 	@PostMapping("/register")
-		public String register(EmployeeVO emp, RedirectAttributes rttr) {
-			log.info("register:"+emp);
-			service.register(emp);
-			rttr.addFlashAttribute("result",emp.getEmpNum());
-			return "redirect:/emp/list";
+		public String register(DeptVO dept, RedirectAttributes rttr) {
+			log.info("register:"+dept);
+			service.register(dept);
+			rttr.addFlashAttribute("result",dept.getDeptNum());
+			return "redirect:/dept/list";
 		}
 	
 	@GetMapping({"/get" ,"/modify"})
-		public void get(@RequestParam("empNum") int empNum, Model model) {
+		public void get(@RequestParam("deptNum") int deptNum, Model model) {
 		
 		log.info("/get or modify");
-		model.addAttribute("emp",service.get(empNum));
+		model.addAttribute("dept",service.get(deptNum));
 	}
 	
 	@PostMapping("/modify")
-	public String modify(EmployeeVO emp,RedirectAttributes rttr) {
-		log.info("modify:"+emp);
+	public String modify(DeptVO dept,RedirectAttributes rttr) {
+		log.info("modify:"+dept);
 		
-		if(service.modify(emp)) {
+		if(service.modify(dept)) {
 			rttr.addFlashAttribute("result","success");
 		}
-		return "redirect:/emp/list";
+		return "redirect:/dept/list";
 	}
 	@PostMapping("/remove")
-	public String remove(@RequestParam("empNum") int empNum,RedirectAttributes rttr) {
-		if(service.remove(empNum)) {
+	public String remove(@RequestParam("deptNum") int deptNum,RedirectAttributes rttr) {
+		if(service.remove(deptNum)) {
 			rttr.addFlashAttribute("result","success");
 		}
-		return "redirect:/emp/list";
+		return "redirect:/dept/list";
 		
 	}
-	
 }
