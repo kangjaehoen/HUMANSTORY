@@ -18,30 +18,26 @@ public class EmpServiceImpl implements EmpService {
 	
 	@Override
 	public void register(EmployeeVO emp) {
-
+		mapper.insertEmpInfo(emp);
 	}
 
 	@Override
 	public List<EmployeeVO> getList() {
-		log.info("getList...");
 		return mapper.getList();
 	}
 
 	@Override
 	public EmployeeVO get(int empNum) {
-		log.info("get....");
 		return mapper.read(empNum);
 	}
 
 	@Override
 	public boolean modify(EmployeeVO emp) {
-		log.info("emp..."+emp);
 		return mapper.update(emp)==1;
 	}
 
 	@Override
 	public boolean remove(int empNum) {
-		log.info("emp remove...."+empNum);
 		return mapper.delete(empNum)==1;
 	}
 

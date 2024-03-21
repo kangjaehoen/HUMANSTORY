@@ -22,12 +22,12 @@ public class EmpServiceJUnitTest {
 //	@Test
 //	public void testRegister() {
 //		EmployeeVO emp=new EmployeeVO();
-//		emp.setEmpName("ddd");
-//	    emp.setJob("캡틴");
+//		emp.setEmpName("이 방법이 맞을까?");
+//	    emp.setJob("주인");
 //	    emp.setPw("son7Hoor");
 //	    emp.setPhoneNum(7777777);
 //	    emp.setAnnualLeaveNum(4);
-//	    emp.setBirthDate(930712);
+//	    emp.setBirthDate(940712);
 //	    emp.setAdminNum(7);
 //	    emp.setAuthNum(7);
 //	    emp.setDeptNum(7);
@@ -58,21 +58,21 @@ public class EmpServiceJUnitTest {
 //	    log.info("modify result"+service.modify(emp));
 //	}
 //	
-	@Test
-	public void testDelete() {
-		log.info("result result:"+service.remove(4));
-	}
-	
-	
+//	@Test
+//	public void testDelete() {
+//		log.info("result result:"+service.remove(4));
+//	}
 //	
+//	
+//
 //	@Test
 //	public void testGet() {
 //		log.info(service.get(1));
 //	}
 //	
-//	@Test
-//	public void testGetList() {
-//		service.getList().forEach(emp-> log.info(emp));
-//	}
+	@Test
+	public void testGetList() {
+		service.getList().forEach(emp-> log.info(emp));
+	}
 //	
 }

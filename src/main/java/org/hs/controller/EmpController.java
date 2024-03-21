@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
@@ -37,5 +38,30 @@ public class EmpController {
 			rttr.addFlashAttribute("result",emp.getEmpNum());
 			return "redirect:/emp/list";
 		}
+	
+	@GetMapping("/get")
+		public void get(@RequestParam("empNum") int empNum, Model model) {
+		
+		log.info("/get");
+		model.addAttribute("emp",service.get(empNum));
+	}
+		
+	@PostMapping("/modify")
+	public String modify(EmployeeVO emp,RedirectAttributes rttr) {
+		log.info("modify:"+emp);
+		
+		if(service.modify(emp)) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/emp/list";
+	}
+	@PostMapping("/remove")
+	public String remove(@RequestParam("empNum") int empNum,RedirectAttributes rttr) {
+		if(service.remove(empNum)) {
+			rttr.addFlashAttribute("result","success");
+		}
+		return "redirect:/emp/list";
+		
+	}
 	
 }
