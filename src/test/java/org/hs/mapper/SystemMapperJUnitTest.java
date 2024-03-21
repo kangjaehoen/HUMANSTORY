@@ -2,6 +2,8 @@ package org.hs.mapper;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.hs.domain.EmployeeVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,19 +24,19 @@ public class SystemMapperJUnitTest {
 //	public void testInsertEmpInfo() {
 //	    EmployeeVO emp = new EmployeeVO();
 //	    emp.setEmpName("침착ㅇㅇ맨");
-//	    emp.setJob("할아버지의 화는");
-//	    emp.setPw("5단계로 나눈다.");
-//	    emp.setPhoneNum(7777777);
+//	    emp.setJob("지금 내손을 잡아");
+//	    emp.setPw("사건의 지평선");
+//	    emp.setPhoneNum(72127);
 //	    emp.setAnnualLeaveNum(1);
-//	    emp.setBirthDate(930712);
-//	    emp.setAdminNum(15);
-//	    emp.setAuthNum(15);
-//	    emp.setDeptNum(15);
-//	    emp.setWorkDate(500);
+//	    emp.setBirthDate(93075);
+//	    emp.setAdminNum(18);
+//	    emp.setAuthNum(18);
+//	    emp.setDeptNum(18);
+//	    emp.setWorkDate(200);
 //
 //	    mapper.insertEmpInfo(emp);
 //	}
-	
+//	
 //	@Test
 //	public void GrantannualLeaveNum() {
 //		EmployeeVO emp = new EmployeeVO();
@@ -50,10 +52,11 @@ public class SystemMapperJUnitTest {
 //	    }
 	
 
-	    @Test
-	    public void testUpdateAnnualLeave() {
-	        mapper.updateAnnualLeave();
-	    }
-	
+	@Test
+	public void testUpdateAnnualLeave() {
+	    int annualLeaveNum = 15; 
+	    String leaveGrantDay = "0321"; 
+	    mapper.updateAnnualLeave(annualLeaveNum, leaveGrantDay);
+	}
 	
 }

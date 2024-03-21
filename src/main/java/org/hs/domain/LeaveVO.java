@@ -14,4 +14,5 @@ public class LeaveVO {
 	private Date proposalDate;
 	private Date startDate;
 	private Date endDate;
+	private Date leaveGrantDay;
 }

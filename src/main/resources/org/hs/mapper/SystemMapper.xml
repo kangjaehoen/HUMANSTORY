@@ -19,38 +19,60 @@
 
 	<select id="getEmployeesToUpdate"
 		resultType="org.hs.domain.EmployeeVO" statementType="STATEMENT">
-		SELECT empNum
-		FROM
+		SELECT * FROM
 		employees
 		WHERE TO_CHAR(SYSDATE, 'MMDD') = '0101' AND workDate > 365
 	</select>
 
-	<update id="updateAnnualLeave" statementType="STATEMENT">
-		UPDATE employees
+<!-- 	<update id="updateAnnualLeave" statementType="STATEMENT">
+    <![CDATA[
+	UPDATE employees
 		SET annualLeaveNum =
-		CASE
-		WHEN workDate > 365 THEN
-		CASE
-		WHEN workDate >= 730 THEN LEAST(25, 16 + FLOOR(((workDate - 730) / 730)) +
-		LEAST(1, FLOOR(((workDate - 730) / 730))))
-		ELSE LEAST(15, 15 + FLOOR(((workDate - 365) / 730)) + LEAST(1,
-		FLOOR(((workDate - 365) / 730))))
-		END
-		ELSE annualLeaveNum
-		END
-		WHERE TO_CHAR(SYSDATE, 'MMDD') = '0321' AND workDate > 365
+    		CASE
+        		WHEN workDate >= 365 THEN 
+            		CASE
+                		WHEN workDate >= 730 THEN LEAST(25, 16 + FLOOR(((workDate - 730) / 365)) + LEAST(1, FLOOR(((workDate - 730) / 365))))
+                		ELSE LEAST(15, 15 + FLOOR(((workDate - 365) / 365)) + LEAST(1, FLOOR(((workDate - 365) / 365))))
+            		END
+        		ELSE
+            		CASE
+                		WHEN TO_CHAR(SYSDATE, 'MMDD') = '0101' THEN 15
+                		ELSE FLOOR(months_between(SYSDATE, HireDate))
+            		END
+    			END
+					WHERE TO_CHAR(SYSDATE, 'MMDD') = '0321'
+    ]]>
+	</update>  -->
+	
+	<update id="updateAnnualLeave" parameterType="org.hs.domain.">
+    <![CDATA[
+	UPDATE employees
+SET annualLeaveNum =
+    CASE
+        WHEN workDate >= 365 THEN 
+            CASE
+                WHEN workDate >= 730 THEN LEAST(25, 16 + FLOOR(((workDate - 730) / 365)) + LEAST(1, FLOOR(((workDate - 730) / 365))))
+                ELSE LEAST(15, 15 + FLOOR(((workDate - 365) / 365)) + LEAST(1, FLOOR(((workDate - 365) / 365))))
+            END
+        ELSE
+            CASE
+                WHEN TO_CHAR(SYSDATE, 'MMDD') = '0101' THEN 15
+                ELSE FLOOR(months_between(SYSDATE, HireDate))
+            END
+    END
+WHERE TO_CHAR(SYSDATE, 'MMDD') = '0321';
+]]>
+</update>
+
+	<update id="">
+
+
 	</update>
 
 
-<update id="">
-
-
-</update>
 
 
 
-
-	
 
 
 
