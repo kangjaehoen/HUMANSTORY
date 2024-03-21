@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.util.Date;
 
 import org.hs.domain.EmployeeVO;
+import org.hs.domain.LeaveRecordsVO;
+import org.hs.domain.LeaveVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ import lombok.extern.log4j.Log4j;
 public class SystemMapperJUnitTest {
 	@Autowired
 	private SystemMapper mapper;
-	
+
 //	@Test
 //	public void testInsertEmpInfo() {
 //	    EmployeeVO emp = new EmployeeVO();
@@ -43,20 +45,20 @@ public class SystemMapperJUnitTest {
 //		emp.setEmpNum(5);
 //		mapper.grantAnnualLeave(emp);
 //	}
-	
+
 //	  @Test
 //	    public void testGetEmployeesToUpdate() {
 //	        // When
 //	         List<EmployeeVO> emp =mapper.getEmployeesToUpdate();
 //	         log.info(emp);    
 //	    }
-	
 
 	@Test
 	public void testUpdateAnnualLeave() {
-	    int annualLeaveNum = 15; 
-	    String leaveGrantDay = "0321"; 
-	    mapper.updateAnnualLeave(annualLeaveNum, leaveGrantDay);
+		String	leaveGrantDay ="0101";
+		int annualLeaveNum=15;
+		
+		mapper.updateAnnualLeave(leaveGrantDay, annualLeaveNum);
 	}
-	
+
 }

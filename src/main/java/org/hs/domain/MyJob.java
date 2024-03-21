@@ -38,7 +38,9 @@ public class MyJob implements Job,InitializingBean{
 	
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		systemMapper.updateAnnualLeave(0, null);
+		String leaveGrantDay = null;
+		int annualLeaveNum = 0;
+		systemMapper.updateAnnualLeave(leaveGrantDay, annualLeaveNum );
 		System.out.println("잘 작동되어라");
 
 	}

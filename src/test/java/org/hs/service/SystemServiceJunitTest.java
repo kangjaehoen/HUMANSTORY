@@ -2,6 +2,7 @@ package org.hs.service;
 
 import static org.junit.Assert.*;
 
+import org.hs.domain.EmployeeVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,9 @@ public class SystemServiceJunitTest {
 	
 	@Test
 	public void testUPdateLeaveAnnual() {
-		service.updateLeaveAnnual();
+		 String leaveGrantDay = "0321";
+		 int annualLeaveNum = 10;
+		service.updateLeaveAnnual(leaveGrantDay, annualLeaveNum);
 	}
 
 }
