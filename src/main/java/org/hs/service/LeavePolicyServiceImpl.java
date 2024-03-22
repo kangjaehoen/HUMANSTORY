@@ -2,6 +2,7 @@ package org.hs.service;
 
 import java.util.List;
 
+import org.hs.domain.Criteria;
 import org.hs.domain.LeavePolicyVO;
 import org.hs.mapper.LeavePolicyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class LeavePolicyServiceImpl implements LeavePolicyService{
 
 
 	@Override
-	public List<LeavePolicyVO> getLeavePolicyCharts() {
+	public List<LeavePolicyVO> getLeavePolicyCharts(Criteria cri) {
 		log.info("휴가정책 리스트 , 서비스");
-		return mapper.getList();
+		return mapper.getList(cri);
 	}
 
 
@@ -54,6 +55,14 @@ public class LeavePolicyServiceImpl implements LeavePolicyService{
 	public int removeLeavePolicy(int lpNum) {
 		log.info("휴가 정책 삭제, 서비스");
 		return mapper.delete(lpNum);
+	}
+
+
+
+	@Override
+	public int listTotal(Criteria cri) {
+		log.info("총 개수");
+		return mapper.listTotalCount(cri);
 	}
 
 }

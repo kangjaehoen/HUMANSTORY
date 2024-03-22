@@ -8,25 +8,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style type="text/css">
+#page {
+	list-style-type: none;
+}
+
+#page li {
+	display: inline;
+	margin-right: 20px;
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
- $(function() {
-	$("#registerBtn").click(function() {
-		window.location.href="register"
-	});
-	
-	$("#listTbody tr").hover(function() {
-		$(this).css("background-color", "rgb(220, 220, 220)");
-	  }, function(){
-          $(this).css("background-color", ""); 
-	});
-	
-	$("#listTbody tr").click(function(){
-		var lpNum = $(this).find("td:first").text(); 
-	    window.location.href = "get?lpNum=" + lpNum;
-	});
-	
-});
+	$(function() {
+		$("#registerBtn").click(function() {
+			window.location.href = "register"
+		});
+
+		$("#listTbody tr").hover(function() {
+			$(this).css("background-color", "rgb(220, 220, 220)");
+		}, function() {
+			$(this).css("background-color", "");
+		});
+
+		$("#listTbody tr").click(function() {
+			var lpNum = $(this).find("td:first").text();
+			window.location.href = "get?lpNum=" + lpNum;
+		});
+
+		$("#pageMaker").submit();
+		
+		$("#pageClick a").click(function(e) {
+		    e.preventDefault(); 
+		    let num = $(this).text();
+		    console.log(num);
+		    
+		    $("#pageNum").find("input[name='pageNum']").val(num);
+		    $("#pageNum").submit();
+		});
+
+		$("#pagePrev a").click(function(e) {
+		    e.preventDefault();
+		    let prev = ${page.startPage} - 1;
+		    $("#pageNum").find("input[name='pageNum']").val(prev);
+		    $("#pageNum").submit();
+		});
+
+		$("#pageNext a").click(function(e) {
+		    e.preventDefault();
+		    let next = ${page.endPage} + 1;
+		    $("#pageNum").find("input[name='pageNum']").val(next);
+		    $("#pageNum").submit();
+			});
+		});
 </script>
 </head>
 <body>
@@ -56,6 +92,29 @@
 
 	<div>
 		<input id="registerBtn" type="button" value="휴가 정책 등록">
+	</div>
+
+	<div>
+		<ul id="page">
+			<c:if test="${page.prev }">
+				<li id="pagePrev"><a href="#">이전페이지</a></li>
+			</c:if>
+
+			<c:forEach var="num" begin="${page.startPage }" end="${page.endPage}">
+				<li id="pageClick"><a href="#">${num}</a></li>
+			</c:forEach>
+
+			<c:if test="${page.next }">
+				<li id="pageNext"><a href="#">다음페이지</a></li>
+			</c:if>
+		</ul>
+	</div>
+
+
+	<div>
+		<form id="pageNum" action="list" method="get">
+			<input type="hidden" name="pageNum" value="${page.cri.pageNum }">
+		</form>
 	</div>
 
 </body>

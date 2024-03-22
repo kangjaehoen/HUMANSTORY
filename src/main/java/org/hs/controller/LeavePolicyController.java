@@ -1,6 +1,8 @@
 package org.hs.controller;
 
+import org.hs.domain.Criteria;
 import org.hs.domain.LeavePolicyVO;
+import org.hs.domain.PageDTO;
 import org.hs.service.LeavePolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.log4j.Log4j;
+
 
 @Controller
 @RequestMapping("/leavePolicy/*")
@@ -34,9 +37,11 @@ public class LeavePolicyController {
 	}
 	
 	@GetMapping("list")
-	public void getLeavePolicyCharts(Model model) {
+	public void getLeavePolicyCharts(Model model, Criteria cri) {
 		log.info("휴가정책 게시판 리스트 컨트롤러");
-		model.addAttribute("list",service.getLeavePolicyCharts());
+		int total = service.listTotal(cri);
+		model.addAttribute("list",service.getLeavePolicyCharts(cri));
+		model.addAttribute("page", new PageDTO(cri, total));
 		
 	}
 	@GetMapping({"get","update"})
