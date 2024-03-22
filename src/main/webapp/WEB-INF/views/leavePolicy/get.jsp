@@ -23,8 +23,10 @@
 
 	<div>
 		<a href="update?lpNum=${get.lpNum }">수정하기</a>
-		<a href="delete?lpNum=${get.lpNum }">삭제하기</a>
-		
 	</div>
+	<form action="delete" method="post">
+		<input type="hidden" name="lpNum" value="${get.lpNum }">
+		<input type="submit" value="삭제">
+	</form>
 </body>
 </html>

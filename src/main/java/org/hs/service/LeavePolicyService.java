@@ -9,5 +9,6 @@ public interface LeavePolicyService {
 	public List<LeavePolicyVO> getLeavePolicyCharts();
 	public LeavePolicyVO getLeavePolicyOne(int lpNum);
 	public int modifyLeavePolicy(LeavePolicyVO vo);
+	public int removeLeavePolicy(int lpNum);
 
 }

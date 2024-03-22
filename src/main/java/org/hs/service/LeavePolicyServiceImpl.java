@@ -48,4 +48,12 @@ public class LeavePolicyServiceImpl implements LeavePolicyService{
 		return mapper.update(vo);
 	}
 
+
+
+	@Override
+	public int removeLeavePolicy(int lpNum) {
+		log.info("휴가 정책 삭제, 서비스");
+		return mapper.delete(lpNum);
+	}
+
 }

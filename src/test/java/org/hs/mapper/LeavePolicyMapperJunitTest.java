@@ -29,7 +29,7 @@ public class LeavePolicyMapperJunitTest {
 // 	@Test
 // 	public void testInsert() {
 // 		LeavePolicyVO vo = new LeavePolicyVO();
-// 		vo.setDocNum(1);
+// 		vo.setDocNum(5);
 // 		vo.setEmpNum(1);
 // 		vo.setTitle("쏘쏘");
 // 		vo.setDetail("백아연");
@@ -54,14 +54,20 @@ public class LeavePolicyMapperJunitTest {
 //		log.info(vo);
 //	}
 	
-	@Test
-	public void testUPdate() {
-		LeavePolicyVO vo = new LeavePolicyVO();
-		vo.setLpNum(4);
-		vo.setTitle("고백");
-		vo.setDetail("멜로망스");
-		mapper.update(vo);
-		 
-	}
+//	@Test
+//	public void testUPdate() {
+//		LeavePolicyVO vo = new LeavePolicyVO();
+//		vo.setLpNum(4);
+//		vo.setTitle("고백");
+//		vo.setDetail("멜로망스");
+//		mapper.update(vo);
+//		 
+//	}
+	
+//	@Test 
+//	public void testDelete() {
+//		int vo =mapper.delete(4);
+//		log.info(vo);
+//	}
 
 }

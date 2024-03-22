@@ -56,4 +56,13 @@ public class LeavePolicyController {
 		return "redirect:/leavePolicy/list";
 	}
 	
+	@PostMapping("delete")
+	public String removeLeavePolicy(
+			@RequestParam("lpNum") int lpNum
+			) {
+		service.removeLeavePolicy(lpNum);
+		return "redirect:/leavePolicy/list";
+		
+	}
+	
 }

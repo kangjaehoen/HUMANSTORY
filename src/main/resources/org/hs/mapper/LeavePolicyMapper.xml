@@ -23,7 +23,7 @@
  </update>
  
  <delete id="delete">
-  	DELETE * FROM leavePolicy WHERE lpNum=#{lpNum}
+  	DELETE  FROM leavePolicy WHERE lpNum=#{lpNum}
  </delete>
 
 

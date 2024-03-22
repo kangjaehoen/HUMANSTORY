@@ -45,13 +45,18 @@ public class LeavePolicyServiceJunitTest {
 //		log.info(vo);
 //	}
 	
+//	@Test
+//	public void testModifiyLeavePolicy() {
+//		LeavePolicyVO vo = new LeavePolicyVO();
+//		vo.setLpNum(4);
+//		vo.setTitle("사건의 지평선");
+//		vo.setDetail("윤하");
+//		log.info(vo);
+//		service.modifyLeavePolicy(vo);
+//	}
+	
 	@Test
-	public void testModifiyLeavePolicy() {
-		LeavePolicyVO vo = new LeavePolicyVO();
-		vo.setLpNum(4);
-		vo.setTitle("사건의 지평선");
-		vo.setDetail("윤하");
-		log.info(vo);
-		service.modifyLeavePolicy(vo);
+	public void testRemoveLeavePolicy() {
+		service.removeLeavePolicy(6);
 	}
 }
