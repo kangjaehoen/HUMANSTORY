@@ -251,7 +251,7 @@
 							
 							
 
-							self.location = "/emp/modify.jsp?empNum="+selectedEmpNum;
+							self.location = "/emp/modify?empNum="+selectedEmpNum;
 
 						});
 

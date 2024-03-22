@@ -42,33 +42,39 @@ public class DeptController {
 		}
 	
 	@GetMapping({"/get" ,"/modify"})
-		public void get(@RequestParam("deptNum") int deptNum, Model model) {
+		public void get(@RequestParam("deptNum") int deptNum,@ModelAttribute("cri") Criteria cri, Model model) {
 		
 		log.info("/get or modify");
 		model.addAttribute("dept",service.get(deptNum));
 	}
-	
+
 	@PostMapping("/modify")
-	public String modify(DeptVO dept,@ModelAttribute("cri") Criteria cri ,RedirectAttributes rttr) {
-		log.info("modify:"+dept);
+	public String modify(DeptVO dept ,@ModelAttribute("cri") Criteria cri ,RedirectAttributes rttr) {
 		
 		if(service.modify(dept)) {
+			
 			rttr.addFlashAttribute("result","success");
+			
 		};
-		rttr.addAttribute("result",cri.getPageNum());
+		rttr.addAttribute("pageNum",cri.getPageNum());
 		rttr.addAttribute("amount",cri.getAmount());
+
 		
 		return "redirect:/dept/list";
 	}
+	
 	@PostMapping("/remove")
 	public String remove(@RequestParam("deptNum") int deptNum, Criteria cri,RedirectAttributes rttr) {
 		if(service.remove(deptNum)) {
 			rttr.addFlashAttribute("result","success");
-		};
+			log.info("성공했어");
+		}
+		;
 		rttr.addAttribute("result",cri.getPageNum());
 		rttr.addAttribute("amount",cri.getAmount());
 		
 		return "redirect:/dept/list";
 		
 	}
+	
 }

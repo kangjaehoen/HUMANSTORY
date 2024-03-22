@@ -18,9 +18,9 @@
 			<div class="panel-heading">
 				Board List Page
 				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register
-					New employee</button>
+					New department</button>
 				<button id='modiBtn' type="button" class="btn btn-xs pull-right">
-					Update employee</button>
+					Update department</button>
 			</div>
 
 			<!-- /.panel-heading -->
@@ -53,19 +53,14 @@
 							<select name='type'>
 								<option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
-								<option value="T"
-									<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>부서번호</option>
 								<option value="C"
 									<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>부서명</option>
-								<option value="TC"
-									<c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>>부서번호
-									or 부서명</option>
-							</select> 
-							<input type='text' name='keyword'
-								value='<c:out value="${pageMaker.cri.keyword}"/>' />
-							<input type='hidden' name='pageNum'
-								value='<c:out value="${pageMaker.cri.pageNum}"/>' />
-							<input type='hidden' name='amount'
+								
+							</select> <input type='text' name='keyword'
+								value='<c:out value="${pageMaker.cri.keyword}"/>' /> <input
+								type='hidden' name='pageNum'
+								value='<c:out value="${pageMaker.cri.pageNum}"/>' /> <input
+								type='hidden' name='amount'
 								value='<c:out value="${pageMaker.cri.amount}"/>' />
 							<button class='btn btn-default'>Search</button>
 						</form>
@@ -75,21 +70,21 @@
 
 				<div class='pull-right'>
 					<ul class="pagination">
+<%-- 
+						<c:if test="${pageMaker.prev}">
+							<li class="paginate_button previous"><a href="#">Previous</a>
+							</li>
+						</c:if>
 
-						<%--             <c:if test="${pageMaker.prev}">
-              <li class="paginate_button previous"><a href="#">Previous</a>
-              </li>
-            </c:if>
+						<c:forEach var="num" begin="${pageMaker.startPage}"
+							end="${pageMaker.endPage}">
+							<li class="paginate_button"><a href="#">${num}</a></li>
+						</c:forEach>
 
-            <c:forEach var="num" begin="${pageMaker.startPage}"
-              end="${pageMaker.endPage}">
-              <li class="paginate_button"><a href="#">${num}</a></li>
-            </c:forEach>
-
-            <c:if test="${pageMaker.next}">
-              <li class="paginate_button next"><a href="#">Next</a></li>
-            </c:if> --%>
-
+						<c:if test="${pageMaker.next}">
+							<li class="paginate_button next"><a href="#">Next</a></li>
+						</c:if>
+ --%>
 						<c:if test="${pageMaker.prev}">
 							<li class="paginate_button previous"><a
 								href="${pageMaker.startPage -1}">Previous</a></li>
@@ -124,9 +119,7 @@
 
 
 			</form>
-
-			<!-- 
-			Modal  추가
+			<!-- Modal  추가 -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -144,12 +137,11 @@
 								changes</button>
 						</div>
 					</div>
-					/.modal-content
+					<!-- /.modal-content -->
 				</div>
-				/.modal-dialog
+				<!-- /.modal-dialog -->
 			</div>
-			/.modal
- -->
+			<!-- /.modal -->
 
 		</div>
 		<!--  end panel-body -->
@@ -198,7 +190,7 @@
 								function() {
 
 									var selectedDeptNums = [];
-									$(".empCheckbox:checked").each(function() {
+									$(".deptCheckbox:checked").each(function() {
 										selectedDeptNums.push($(this).val());
 									});
 									if (selectedDeptNums.length == 0) {
@@ -212,7 +204,7 @@
 
 									var selectedDeptNum = selectedDeptNums[0];
 
-									self.location = "/dept/modify.jsp?deptNum="
+									self.location = "/dept/modify?deptNum="
 											+ selectedDeptNum;
 
 								});
@@ -231,7 +223,7 @@
 											.val($(this).attr("href"));
 									actionForm.submit();
 								});
-
+/* 
 						$(".move")
 								.on(
 										"click",
@@ -248,7 +240,7 @@
 											actionForm.submit();
 
 										});
-
+ */
 						var searchForm = $("#searchForm");
 
 						$("#searchForm button").on(

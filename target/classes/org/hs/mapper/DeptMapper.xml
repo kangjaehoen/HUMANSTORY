@@ -8,6 +8,7 @@
 		<foreach collection="typeArr">
 			<trim prefix="OR">
 				<choose>
+					<when test="type == 'T'.toString()"> deptNum like '%'||#{keyword}||'%' </when>
 					<when test="type == 'C'.toString()"> deptName like '%'||#{keyword}||'%' </when>
 				</choose>
 			</trim>
@@ -67,7 +68,7 @@
 
 <update id="update">
 	update DEPARTMENTS set
-	deptName=#{deptName},
+	deptName=#{deptName}
 	
 	where deptNum=#{deptNum}
 </update>
