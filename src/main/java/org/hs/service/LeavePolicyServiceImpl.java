@@ -31,4 +31,21 @@ public class LeavePolicyServiceImpl implements LeavePolicyService{
 		log.info("휴가정책 리스트 , 서비스");
 		return mapper.getList();
 	}
+
+
+
+	@Override
+	public LeavePolicyVO getLeavePolicyOne(int lpNum) {
+		log.info("휴가정책 세부조회 , 서비스");
+		return mapper.getDetail(lpNum);
+	}
+
+
+
+	@Override
+	public int modifyLeavePolicy(LeavePolicyVO vo) {
+		log.info("휴가 정책 게시물 수정, 서비스");
+		return mapper.update(vo);
+	}
+
 }

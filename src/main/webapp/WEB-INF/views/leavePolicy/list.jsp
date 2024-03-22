@@ -21,8 +21,12 @@
           $(this).css("background-color", ""); 
 	});
 	
+	$("#listTbody tr").click(function(){
+		var lpNum = $(this).find("td:first").text(); 
+	    window.location.href = "get?lpNum=" + lpNum;
+	});
+	
 });
-
 </script>
 </head>
 <body>
@@ -31,10 +35,8 @@
 			<thead>
 				<tr>
 					<th>#번호</th>
-					<th>문서번호(뺄예정)</th>
 					<th>작성자번호</th>
 					<th>제목</th>
-					<th>내용</th>
 					<th>등록일</th>
 				</tr>
 			</thead>
@@ -42,10 +44,8 @@
 				<c:forEach items="${list}" var="leavePolicy">
 					<tr id="listTr">
 						<td>${leavePolicy.lpNum }</td>
-						<td>${leavePolicy.docNum }</td>
 						<td>${leavePolicy.empNum }</td>
 						<td>${leavePolicy.title }</td>
-						<td>${leavePolicy.detail }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd"
 								value="${leavePolicy.registerDate}" /></td>
 					</tr>

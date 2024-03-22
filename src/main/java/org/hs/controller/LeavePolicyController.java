@@ -1,17 +1,14 @@
 package org.hs.controller;
 
-import java.net.http.HttpClient.Redirect;
-import java.util.List;
-
 import org.hs.domain.LeavePolicyVO;
 import org.hs.service.LeavePolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.log4j.Log4j;
 
@@ -35,10 +32,28 @@ public class LeavePolicyController {
 		service.registerLeavePolicy(vo);
 		return "redirect:/leavePolicy/list";
 	}
+	
 	@GetMapping("list")
 	public void getLeavePolicyCharts(Model model) {
 		log.info("휴가정책 게시판 리스트 컨트롤러");
 		model.addAttribute("list",service.getLeavePolicyCharts());
 		
-	}		
+	}
+	@GetMapping({"get","update"})
+	public void getLeavePolicyOne(@RequestParam("lpNum") int lpNum,Model model) {
+		log.info("휴가 정책 세부 조회");
+		model.addAttribute("get",service.getLeavePolicyOne(lpNum));
+		
+	}
+	
+	
+	
+	@PostMapping("update")
+	public String modifyLeavePolicy(LeavePolicyVO vo) {
+		log.info("휴가 정책 수정");
+		log.info(vo);
+		service.modifyLeavePolicy(vo);
+		return "redirect:/leavePolicy/list";
+	}
+	
 }

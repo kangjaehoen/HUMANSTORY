@@ -47,10 +47,21 @@ public class LeavePolicyMapperJunitTest {
 //		}
 //	
 //	}
+	
+//	@Test
+//	public void testDetail() {
+//		LeavePolicyVO vo = mapper.getDetail(1);
+//		log.info(vo);
+//	}
+	
 	@Test
-	public void testDetail() {
-		LeavePolicyVO vo = mapper.getDetail(1);
-		log.info(vo);
+	public void testUPdate() {
+		LeavePolicyVO vo = new LeavePolicyVO();
+		vo.setLpNum(4);
+		vo.setTitle("고백");
+		vo.setDetail("멜로망스");
+		mapper.update(vo);
+		 
 	}
 
 }

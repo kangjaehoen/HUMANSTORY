@@ -26,16 +26,32 @@ public class LeavePolicyServiceJunitTest {
 //		log.info(service);
 //	}
 	
-	@Test
-	public void testRegisterLeavePolicy() {
-		LeavePolicyVO vo = new LeavePolicyVO();
-		vo.setDocNum(2);
- 		vo.setEmpNum(2);
- 		vo.setTitle("보통연애");
- 		vo.setDetail("박경");
- 		
- 		service.registerLeavePolicy(vo);
-		
+//	@Test
+//	public void testRegisterLeavePolicy() {
+//		LeavePolicyVO vo = new LeavePolicyVO();
+//		vo.setDocNum(2);
+// 		vo.setEmpNum(2);
+// 		vo.setTitle("보통연애");
+// 		vo.setDetail("박경");
+// 		
+// 		service.registerLeavePolicy(vo);
+//		
+//	
+//	}
 	
+//	@Test
+//	public void testGetLeavePolicyOne() {
+//		LeavePolicyVO vo = service.getLeavePolicyOne(1);
+//		log.info(vo);
+//	}
+	
+	@Test
+	public void testModifiyLeavePolicy() {
+		LeavePolicyVO vo = new LeavePolicyVO();
+		vo.setLpNum(4);
+		vo.setTitle("사건의 지평선");
+		vo.setDetail("윤하");
+		log.info(vo);
+		service.modifyLeavePolicy(vo);
 	}
 }

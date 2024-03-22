@@ -16,6 +16,16 @@
  <select id="getDetail" resultType="org.hs.domain.LeavePolicyVO">
  	SELECT * FROM leavePolicy WHERE lpNum=#{lpNUm}
  </select>
+ 
+ <update id="update">
+ 	UPDATE  leavePolicy SET title=#{title}, detail=#{detail},
+ 	 registerDate=sysdate WHERE lpNum=#{lpNum}
+ </update>
+ 
+ <delete id="delete">
+  	DELETE * FROM leavePolicy WHERE lpNum=#{lpNum}
+ </delete>
+
 
 
 
