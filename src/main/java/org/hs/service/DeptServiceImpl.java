@@ -2,6 +2,7 @@ package org.hs.service;
 
 import java.util.List;
 
+import org.hs.domain.Criteria;
 import org.hs.domain.DeptVO;
 import org.hs.mapper.DeptMapper;
 import org.hs.mapper.EmpMapper;
@@ -21,10 +22,10 @@ public class DeptServiceImpl implements DeptService {
 		mapper.insertDeptInfo(dept);
 	}
 
-	@Override
-	public List<DeptVO> getList() {
-		return mapper.getList();
-	}
+//	@Override
+//	public List<DeptVO> getList() {
+//		return mapper.getList();
+//	}
 
 	@Override
 	public DeptVO get(int deptNum) {
@@ -39,6 +40,17 @@ public class DeptServiceImpl implements DeptService {
 	@Override
 	public boolean remove(int deptNum) {
 		return mapper.delete(deptNum)==1;
+	}
+
+	@Override
+	public List<DeptVO> getList(Criteria cri) {
+		
+		return mapper.getListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		return mapper.getTotalCount(cri);
 	}
 
 }

@@ -1,11 +1,14 @@
 package org.hs.controller;
 
+import org.hs.domain.Criteria;
 import org.hs.domain.DeptVO;
+import org.hs.domain.PageDTO;
 import org.hs.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,9 +24,10 @@ public class DeptController {
 	private DeptService service;
 	
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Criteria cri,Model model) {
 		log.info("list");
-		model.addAttribute("list",service.getList());
+		model.addAttribute("list",service.getList(cri));
+		model.addAttribute("pageMaker",new PageDTO(cri, service.getTotal(cri)));
 	}
 	@GetMapping("/register")
 	public void register() {
@@ -45,19 +49,25 @@ public class DeptController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(DeptVO dept,RedirectAttributes rttr) {
+	public String modify(DeptVO dept,@ModelAttribute("cri") Criteria cri ,RedirectAttributes rttr) {
 		log.info("modify:"+dept);
 		
 		if(service.modify(dept)) {
 			rttr.addFlashAttribute("result","success");
-		}
+		};
+		rttr.addAttribute("result",cri.getPageNum());
+		rttr.addAttribute("amount",cri.getAmount());
+		
 		return "redirect:/dept/list";
 	}
 	@PostMapping("/remove")
-	public String remove(@RequestParam("deptNum") int deptNum,RedirectAttributes rttr) {
+	public String remove(@RequestParam("deptNum") int deptNum, Criteria cri,RedirectAttributes rttr) {
 		if(service.remove(deptNum)) {
 			rttr.addFlashAttribute("result","success");
-		}
+		};
+		rttr.addAttribute("result",cri.getPageNum());
+		rttr.addAttribute("amount",cri.getAmount());
+		
 		return "redirect:/dept/list";
 		
 	}
