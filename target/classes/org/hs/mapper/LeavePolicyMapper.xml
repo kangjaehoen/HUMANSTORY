@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hs.mapper.LeavePolicyMapper">
+
+ <insert id="insert">
+ 	INSERT INTO leavePolicy(lpNum, docNum, empNum, title, detail, registerDate) 
+ 	VALUES (lpNum_seq.nextval,#{docNum},#{empNum},#{title},#{detail},sysdate)
+ </insert>
+ 
+ <select id="getList" resultType="org.hs.domain.LeavePolicyVO">
+ 	SELECT * FROM leavePolicy
+ </select>
+ 
+ <select id="getDetail" resultType="org.hs.domain.LeavePolicyVO">
+ 	SELECT * FROM leavePolicy WHERE lpNum=#{lpNUm}
+ </select>
+
+
+
+</mapper>
