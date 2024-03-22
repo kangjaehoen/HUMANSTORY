@@ -1,10 +1,11 @@
 package org.hs.service;
 
-import org.springframework.stereotype.Service;
+import org.hs.domain.AnnualLeaveDTO;
+
 
 
 public interface SystemService {
-	public int updateLeaveAnnual(String leaveGrantDay, int  annualLeaveNum);
+	public int updateLeaveAnnual(AnnualLeaveDTO dto);
 	
 	
 }

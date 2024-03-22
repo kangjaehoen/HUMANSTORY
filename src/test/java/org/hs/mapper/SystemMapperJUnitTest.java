@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 
+import org.hs.domain.AnnualLeaveDTO;
 import org.hs.domain.EmployeeVO;
 import org.hs.domain.LeaveRecordsVO;
 import org.hs.domain.LeaveVO;
@@ -55,10 +56,11 @@ public class SystemMapperJUnitTest {
 
 	@Test
 	public void testUpdateAnnualLeave() {
-		String	leaveGrantDay ="0101";
-		int annualLeaveNum=15;
-		
-		mapper.updateAnnualLeave(leaveGrantDay, annualLeaveNum);
+		AnnualLeaveDTO dto = new AnnualLeaveDTO();
+		dto.setAnnualNum(15);
+		dto.setLeaveDay("0322");
+		log.info(dto);
+		mapper.updateAnnualLeave(dto);
 	}
 
 }

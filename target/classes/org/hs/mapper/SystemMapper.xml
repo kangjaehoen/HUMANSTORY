@@ -16,12 +16,14 @@
 		#{authNum},
 		#{deptNum})
 	</insert>
-	
+
 	<insert id="insertLeaveInfo">
-		INSERT INTO employees (leaveNum, leaveType, leaveReason, proposalDate,
+		INSERT INTO employees (leaveNum, leaveType,
+		leaveReason, proposalDate,
 		startDate,
 		endDate,leaveGrantDay)
-		VALUES (leaveNum_seq.NEXTVAL, #{empName},#{pw}, #{job},
+		VALUES
+		(leaveNum_seq.NEXTVAL, #{empName},#{pw}, #{job},
 		#{phoneNum},
 		#{annualLeaveNum}, #{workDate},#{birthDate}, #{adminNum},
 		#{authNum},
@@ -35,49 +37,40 @@
 		WHERE TO_CHAR(SYSDATE, 'MMDD') = '0101' AND workDate > 365
 	</select>
 
-<!-- 	<update id="updateAnnualLeave" statementType="STATEMENT">
-    <![CDATA[
-	UPDATE employees
-		SET annualLeaveNum =
-    		CASE
-        		WHEN workDate >= 365 THEN 
-            		CASE
-                		WHEN workDate >= 730 THEN LEAST(25, 16 + FLOOR(((workDate - 730) / 365)) + LEAST(1, FLOOR(((workDate - 730) / 365))))
-                		ELSE LEAST(15, 15 + FLOOR(((workDate - 365) / 365)) + LEAST(1, FLOOR(((workDate - 365) / 365))))
-            		END
-        		ELSE
-            		CASE
-                		WHEN TO_CHAR(SYSDATE, 'MMDD') = '0101' THEN 15
-                		ELSE FLOOR(months_between(SYSDATE, HireDate))
-            		END
-    			END
-					WHERE TO_CHAR(SYSDATE, 'MMDD') = '0321'
-    ]]>
-	</update>   -->
-	
+	<!-- <update id="updateAnnualLeave" statementType="STATEMENT"> <![CDATA[ 
+		UPDATE employees SET annualLeaveNum = CASE WHEN workDate >= 365 THEN CASE 
+		WHEN workDate >= 730 THEN LEAST(25, 16 + FLOOR(((workDate - 730) / 365)) 
+		+ LEAST(1, FLOOR(((workDate - 730) / 365)))) ELSE LEAST(15, 15 + FLOOR(((workDate 
+		- 365) / 365)) + LEAST(1, FLOOR(((workDate - 365) / 365)))) END ELSE CASE 
+		WHEN TO_CHAR(SYSDATE, 'MMDD') = '0101' THEN 15 ELSE FLOOR(months_between(SYSDATE, 
+		HireDate)) END END WHERE TO_CHAR(SYSDATE, 'MMDD') = '0321' ]]> </update> -->
+
 
 	<update id="updateAnnualLeave">
 		UPDATE employees e
-			SET e.annualLeaveNum = 
-				CASE
-					WHEN e.workDate >= 365 THEN
-					CASE
-						WHEN e.workDate >= 730 THEN LEAST(25, (#{annualLeaveNum}+1) + FLOOR(((e.workDate - 730) / 365)) + LEAST(1, FLOOR(((e.workDate - 730) / 365))))
-						ELSE LEAST(#{annualLeaveNum}, #{annualLeaveNum} + FLOOR(((e.workDate - 365) / 365)) + LEAST(1, FLOOR(((e.workDate - 365) / 365))))
-					END
-				ELSE
-					CASE
-						WHEN TO_CHAR(SYSDATE, 'MMDD') = #{leaveGrantDay} THEN 15
-						ELSE FLOOR(months_between(SYSDATE, e.hireDate))
-					END
-			END
-			WHERE e.empNum IN (
-			SELECT e2.empNum
-			FROM employees e2
-			INNER JOIN LeaveRecords lr ON e2.empNum = lr.empNum
-			INNER JOIN Leave l ON lr.leaveNum = l.leaveNum
-			WHERE TO_CHAR(SYSDATE, 'MMDD') = #{leaveGrantDay})
-	</update> 
+		SET e.annualLeaveNum =
+		CASE
+		WHEN e.workDate >= 365 THEN
+		CASE
+		WHEN e.workDate >= 1095 THEN LEAST(25, (#{annualNum}+1) +
+		FLOOR(((e.workDate - 1095) / 365)))
+		ELSE LEAST(#{annualNum})
+		END
+		ELSE
+		CASE
+		WHEN TO_CHAR(SYSDATE, 'MMDD') = #{leaveDay} THEN
+		#{annualNum}
+		ELSE FLOOR(months_between(SYSDATE, e.hireDate))
+		END
+		END
+		WHERE e.empNum IN (
+		SELECT e2.empNum
+		FROM employees e2
+		INNER JOIN LeaveRecords lr ON e2.empNum = lr.empNum
+		INNER JOIN Leave l ON lr.leaveNum = l.leaveNum
+		WHERE TO_CHAR(SYSDATE, 'MMDD') = #{leaveDay}
+		)
+	</update>
 
 
 </mapper>

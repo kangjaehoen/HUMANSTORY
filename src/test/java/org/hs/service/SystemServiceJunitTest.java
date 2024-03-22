@@ -2,6 +2,7 @@ package org.hs.service;
 
 import static org.junit.Assert.*;
 
+import org.hs.domain.AnnualLeaveDTO;
 import org.hs.domain.EmployeeVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,9 +22,11 @@ public class SystemServiceJunitTest {
 	
 	@Test
 	public void testUPdateLeaveAnnual() {
-		 String leaveGrantDay = "0321";
-		 int annualLeaveNum = 10;
-		service.updateLeaveAnnual(leaveGrantDay, annualLeaveNum);
+		AnnualLeaveDTO dto = new AnnualLeaveDTO();
+		dto.setAnnualNum(15);
+		dto.setLeaveDay("0322");
+		log.info("service : "+dto);
+		service.updateLeaveAnnual(dto);
 	}
 
 }

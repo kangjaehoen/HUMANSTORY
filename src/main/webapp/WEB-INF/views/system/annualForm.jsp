@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="annualLeave" method="get">
-		<input id="dateInput" type="text" name="leaveGrantDay" value="0321"/> 
-		<input id="textInput" type="text" name="annualLeaveNum" value="15"/><br>
+	<form action="annualLeave" method="post">
+		<input id="dateInput" type="text" name="leaveDay" value=""/> 
+		<input id="textInput" type="text" name="annualNum" value="15"/><br>
 		<input type="submit" value="휴가설정등록">
 	</form>
 </body>

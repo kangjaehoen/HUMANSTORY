@@ -1,6 +1,7 @@
 package org.hs.service;
 
 
+import org.hs.domain.AnnualLeaveDTO;
 import org.hs.mapper.SystemMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +14,19 @@ public class SystemServiceImpl implements SystemService {
 	
 	@Autowired
 	private SystemMapper mapper;
+	
+//	@Override
+//	public int updateLeaveAnnual(String leaveGrantDay,int annualLeaveNum) {
+//		log.info("휴가 부여 Sevice");
+//		log.info(leaveGrantDay);
+//		log.info(annualLeaveNum);
+//		return mapper.updateAnnualLeave(leaveGrantDay,annualLeaveNum);
+//		
+	
 	@Override
-	public int updateLeaveAnnual(String leaveGrantDay,int annualLeaveNum) {
-		log.info("휴가 부여 Sevice");
-		log.info(leaveGrantDay);
-		log.info(annualLeaveNum);
-		return mapper.updateAnnualLeave(leaveGrantDay,annualLeaveNum);
-		
+	public int updateLeaveAnnual(AnnualLeaveDTO dto) {
+		System.out.println("service : "+dto);
+		return mapper.updateAnnualLeave(dto);
 	}
 	
 }
