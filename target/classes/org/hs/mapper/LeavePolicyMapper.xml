@@ -39,8 +39,8 @@
 		DELETE FROM leavePolicy WHERE lpNum=#{lpNum}
 	</delete>
 	
-	<select id="listTotalCount">
-		select count(*) from leavePolicy;	
+	<select id="listTotalCount" resultType="int">
+		select count(*) from leavePolicy
 	</select>
 
 

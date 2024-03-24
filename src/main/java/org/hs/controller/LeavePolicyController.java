@@ -41,7 +41,7 @@ public class LeavePolicyController {
 		log.info("휴가정책 게시판 리스트 컨트롤러");
 		int total = service.listTotal(cri);
 		model.addAttribute("list",service.getLeavePolicyCharts(cri));
-		model.addAttribute("page", new PageDTO(cri, total));
+		model.addAttribute("page", new PageDTO(cri, service.listTotal(cri)));
 		
 	}
 	@GetMapping({"get","update"})
