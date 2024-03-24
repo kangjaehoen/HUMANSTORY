@@ -1,6 +1,7 @@
 package org.hs.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 import lombok.ToString;
@@ -14,4 +15,5 @@ public class LeavePolicyVO {
 	private String title;
 	private String detail;
 	private Date registerDate;
+	private List<LeavePolicyAttachVO> attachList;
 }
