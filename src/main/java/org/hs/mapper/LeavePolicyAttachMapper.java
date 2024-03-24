@@ -8,7 +8,7 @@ import org.hs.domain.LeavePolicyVO;
 
 public interface LeavePolicyAttachMapper {
 
-	public void insertFile(LeavePolicyAttachVO attach);
+	public void insert(LeavePolicyAttachVO attach);
 	
 	public List<LeavePolicyAttachVO> findByBno(int lpNum);
 

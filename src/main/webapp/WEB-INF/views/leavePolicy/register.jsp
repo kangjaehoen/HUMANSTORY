@@ -11,30 +11,45 @@
 	<form role="form" action="register" method="post">
 		임시 부서번호 :<input type="text" name="docNum" value=""> <br>
 		임시 사원번호 :<input type="text" name="empNum" value=""> <br>
-		제목 : <input type="text" name="title" value=""> <br> 
-		내용 : <input type="text" name="detail" value=""> <br> 
-	
-		<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />
+		제목 : <input type="text" name="title" value=""> <br> 내용 :
+		<input type="text" name="detail" value=""> <br> <input
+			type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />
 		<input type="submit" value="등록">
 	</form>
-	
-<!-- 	 <form action="/uploadFormAction" method="post" enctype="multipart/form-data">
+
+	<!-- 	 <form action="/uploadFormAction" method="post" enctype="multipart/form-data">
     파일첨부: <input type="file" name="uploadFile" multiple>
     <input type="submit" value="저장확인">
 </form>	
  -->
-<div>
-	<div>
-		파일 첨부 : <input type="file" name='uploadFile' multiple><br> 
-	</div>
-	<div class='uploadResult'>
-		<ul>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
 
-		</ul>
+				<div class="panel-heading">File Attach</div>
+				<!-- /.panel-heading -->
+				<div class="panel-body">
+					<div class="form-group uploadDiv">
+						<input type="file" name='uploadFile' multiple>
+					</div>
+
+					<div class='uploadResult'>
+						<ul>
+
+						</ul>
+					</div>
+
+
+				</div>
+				<!--  end panel-body -->
+			</div>
+			<!--  end panel-body -->
+		</div>
+		<!-- end panel -->
 	</div>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
+	<!-- /.row -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
 	$(function() {
 
 		var formObj = $("form[role='form']");
@@ -108,7 +123,7 @@
 				processData : false,
 				contentType : false,
 				data : formData,
-				type : 'post',
+				type : 'POST',
 				dataType : 'json',
 				success : function(result) {
 					console.log(result);
@@ -173,6 +188,6 @@
 		}
 
 	})
-</script>
+	</script>
 </body>
 </html>

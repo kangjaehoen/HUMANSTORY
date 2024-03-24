@@ -5,7 +5,7 @@
   
   <mapper namespace="org.hs.mapper.LeavePolicyAttachMapper">
   
-   <insert id="insertFile" parameterType="org.hs.domain.LeavePolicyAttachVO">
+   <insert id="insert" parameterType="org.hs.domain.LeavePolicyAttachVO">
         insert into LeavePolicyAttach (uuid, uploadpath, filename,
         filetype, lpNum)
         values (#{uuid}, #{uploadPath}, #{fileName},

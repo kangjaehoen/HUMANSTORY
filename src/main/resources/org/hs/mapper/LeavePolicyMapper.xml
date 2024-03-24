@@ -5,10 +5,16 @@
 <mapper namespace="org.hs.mapper.LeavePolicyMapper">
 
 	<insert id="insert">
-		INSERT INTO leavePolicy(lpNum, docNum, empNum, title,
-		detail, registerDate)
-		VALUES
-		(lpNum_seq.nextval,#{docNum},#{empNum},#{title},#{detail},sysdate)
+		<selectKey keyProperty="lpNum" order="BEFORE"
+			resultType="int">
+			select lpNum_seq.nextval from dual
+		</selectKey>
+
+		insert into leavePolicy(lpNum, docNum, empNum, title,
+		detail,
+		registerDate)
+		values
+		(#{lpNum},#{docNum},#{empNum},#{title},#{detail},sysdate)
 	</insert>
 
 	<select id="getList" resultType="org.hs.domain.LeavePolicyVO">
@@ -38,9 +44,10 @@
 	<delete id="delete">
 		DELETE FROM leavePolicy WHERE lpNum=#{lpNum}
 	</delete>
-	
+
 	<select id="listTotalCount" resultType="int">
-		select count(*) from leavePolicy
+		select count(*) from
+		leavePolicy
 	</select>
 
 

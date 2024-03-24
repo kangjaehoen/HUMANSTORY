@@ -28,13 +28,15 @@ public class LeavePolicyServiceImpl implements LeavePolicyService{
 	public void registerLeavePolicy(LeavePolicyVO vo) {
 		log.info("휴가 정책 등록 , 서비스");
 		mapper.insert(vo);
-		
+		System.out.println(vo);
 		if (vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
 			return;
 		}
 		vo.getAttachList().forEach(attach -> {
 			attach.setLpNum(vo.getLpNum());
-			lpMapper.insertFile(attach);
+			lpMapper.insert(attach);
+			log.info("파일 등록 서비스 :"+attach);
+			System.out.println(attach);
 		});
 
 	}

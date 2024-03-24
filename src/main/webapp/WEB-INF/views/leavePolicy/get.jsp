@@ -28,5 +28,84 @@
 		<input type="hidden" name="lpNum" value="${get.lpNum }">
 		<input type="submit" value="삭제">
 	</form>
+	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+
+	(function(){
+		
+		var lpNum = '<c:out value="${get.lpNum}"/>';	
+		
+		 $.getJSON("/leavePolicy/getAttachList", {lpNum: lpNum}, function(arr){	 
+			   console.log("==============");
+		       console.log(arr);	       
+		       var str = "";
+		       
+		       $(arr).each(function(i, attach){	       
+		         //image type
+		         if(attach.fileType){
+		           var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+		           
+		           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+		           str += "<img src='/display?fileName="+fileCallPath+"'>";
+		           str += "</div>";
+		           str +"</li>";
+		         }else{
+		             
+		           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+		           str += "<span> "+ attach.fileName+"</span><br/>";
+		           str += "<img src='/resources/img/attach.png'></a>";
+		           str += "</div>";
+		           str +"</li>";
+		         }
+		       });
+		       
+		       $(".uploadResult ul").html(str);      
+		       
+		});//end getjson	
+	})();
+	
+	
+	  $(".uploadResult").on("click","li", function(e){
+	      
+		    console.log("view image");
+		    
+		    var liObj = $(this);
+		    
+		    var path = encodeURIComponent(liObj.data("path")+"/" + liObj.data("uuid")+"_" + liObj.data("filename"));
+		    
+		    if(liObj.data("type")){
+		      showImage(path.replace(new RegExp(/\\/g),"/"));
+		    }else {
+		      //download 
+		      self.location ="/download?fileName="+path
+		    }
+		    
+		    
+		  });
+		  
+		  function showImage(fileCallPath){
+			    
+		    alert(fileCallPath);
+		    
+		    $(".bigPictureWrapper").css("display","flex").show();
+		    
+		    $(".bigPicture")
+		    .html("<img src='/display?fileName="+fileCallPath+"' >")
+		    .animate({width:'100%', height: '100%'}, 1000);
+		    
+		  }
+
+		  $(".bigPictureWrapper").on("click", function(e){
+		    $(".bigPicture").animate({width:'0%', height: '0%'}, 1000);
+		    setTimeout(function(){
+		      $('.bigPictureWrapper').hide();
+		    }, 1000);
+	});
+	
+	
+});//end function
+</script>
 </body>
 </html>
