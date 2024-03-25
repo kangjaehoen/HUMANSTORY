@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">Tables</h1>
@@ -46,7 +47,6 @@
 							 -->
 						</tr>
 					</thead>
-
 					<c:forEach items="${list}" var="emp">
 						<tr>
 							<td><input type="checkbox" class="empCheckbox"
@@ -62,13 +62,9 @@
 							<td><c:out value="${emp.workDate}" /></td>
 							<td><c:out value="${emp.birthDate}" /></td>
 							<td><c:out value="${emp.department.deptName}" /></td>
-							<%-- 
-							<td><c:out value="${emp.adminNum}" /></td>
-							<td><c:out value="${emp.authNum}" /></td>
-							<td><c:out value="${emp.deptNum}" /></td>
-							 --%>
 						</tr>
 					</c:forEach>
+
 				</table>
 
 				<div class='row'>
@@ -77,72 +73,71 @@
 						<form id='searchForm' action="/emp/list" method='get'>
 							<select name='type'>
 								<option value=""
-									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
+									<c:out value="${emppageMaker.cri.type == null?'selected':''}"/>>--</option>
 								<option value="T"
-									<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>사원번호</option>
+									<c:out value="${emppageMaker.cri.type eq 'T'?'selected':''}"/>>사원번호</option>
 								<option value="C"
-									<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>사원명</option>
+									<c:out value="${emppageMaker.cri.type eq 'C'?'selected':''}"/>>사원명</option>
 								<option value="W"
-									<c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>>부서명</option>
+									<c:out value="${emppageMaker.cri.type eq 'W'?'selected':''}"/>>부서명</option>
 								<option value="TC"
-									<c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>>사원번호
+									<c:out value="${emppageMaker.cri.type eq 'TC'?'selected':''}"/>>사원번호
 									or 사원명</option>
 								<option value="TW"
-									<c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>사원번호
+									<c:out value="${emppageMaker.cri.type eq 'TW'?'selected':''}"/>>사원번호
 									or 부서명</option>
 								<option value="TWC"
-									<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>사원번호
+									<c:out value="${emppageMaker.cri.type eq 'TWC'?'selected':''}"/>>사원번호
 									or 사원명 or 부서명</option>
 							</select> <input type='text' name='keyword'
-								value='<c:out value="${pageMaker.cri.keyword}"/>' /> <input
+								value='<c:out value="${emppageMaker.cri.keyword}"/>' /> <input
 								type='hidden' name='emppageNum'
-								value='<c:out value="${pageMaker.cri.emppageNum}"/>' /> <input
+								value='<c:out value="${emppageMaker.cri.emppageNum}"/>' /> <input
 								type='hidden' name='empamount'
-								value='<c:out value="${pageMaker.cri.empamount}"/>' />
+								value='<c:out value="${emppageMaker.cri.empamount}"/>' />
 							<button class='btn btn-default'>Search</button>
 						</form>
 					</div>
 				</div>
-
-
 				<div class='pull-right'>
 					<ul class="pagination">
-						<c:if test="${pageMaker.prev}">
+						<c:if test="${emppageMaker.prev}">
 							<li class="paginate_button previous"><a
-								href="${pageMaker.startPage -1}">Previous</a></li>
+								href="?emppageNum=${emppageMaker.startPage - 1}">Previous</a></li>
 						</c:if>
-
-						<c:forEach var="num" begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}">
-							<li class="paginate_button  ${pageMaker.cri.deptpageNum == num ? "active":""} ">
-								<!--active를 사용해서 찐하게 보이도록 함  --> <a href="${num}">${num}</a>
+						<c:forEach var="num" begin="${emppageMaker.startPage}"
+							end="${emppageMaker.endPage}">
+							<li
+								class="paginate_button ${emppageMaker.cri.emppageNum == num ? 'active' : ''}">
+								<a href="?emppageNum=${num}">${num}</a>
 							</li>
 						</c:forEach>
 
-						<c:if test="${pageMaker.next}">
+						<c:if test="${emppageMaker.next}">
 							<li class="paginate_button next"><a
-								href="${pageMaker.endPage +1 }">Next</a></li>
+								href="?emppageNum=${emppageMaker.endPage + 1}">Next</a></li>
 						</c:if>
-
-
 					</ul>
+
 				</div>
-				<!--  end Pagination -->
+
+
+
 
 			</div>
-			 
-			<form id='actionForm' action="/emp/list" method='get'>
-				<input type='hidden' name='emppageNum' value='${pageMaker.cri.emppageNum}'>
-				<input type='hidden' name='empamount' value='${pageMaker.cri.empamount}'>
 
-				<input type='hidden' name='type'
-					value='<c:out value="${ pageMaker.cri.type }"/>'> <input
-					type='hidden' name='keyword'
-					value='<c:out value="${ pageMaker.cri.keyword }"/>'>
+			<form id='actionForm' action="/emp/list" method='get'>
+				<input type='hidden' name='emppageNum'
+					value='${emppageMaker.cri.emppageNum}'> <input
+					type='hidden' name='empamount'
+					value='${emppageMaker.cri.empamount}'> <input type='hidden'
+					name='type' value='<c:out value="${ emppageMaker.cri.type }"/>'>
+				<input type='hidden' name='keyword'
+					value='<c:out value="${ emppageMaker.cri.keyword }"/>'>
 			</form>
- 
+
 			<!--Modal  추가-->
- 
+
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -192,7 +187,6 @@
 							if (result === '' || history.state) {
 								return;
 							}
-
 
 							$("#myModal").modal("show");
 						}

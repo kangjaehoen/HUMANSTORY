@@ -1,6 +1,5 @@
 package org.hs.controller;
 
-import org.hs.domain.DeptPageDTO;
 import org.hs.domain.EmpCriteria;
 import org.hs.domain.EmpPageDTO;
 import org.hs.domain.EmployeeVO;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -30,7 +27,8 @@ public class EmpController {
 	public void list(EmpCriteria cri,Model model) {
 		log.info("list");
 		model.addAttribute("list",service.getList(cri));
-		model.addAttribute("pageMaker",new EmpPageDTO(cri, service.getTotal(cri)));
+		model.addAttribute("emppageMaker",new EmpPageDTO(cri, service.getTotal(cri)));
+		
 	}
 	@GetMapping("/register")
 	public void register() {
@@ -50,6 +48,7 @@ public class EmpController {
 		log.info("/get or modify");
 		model.addAttribute("emp",service.get(empNum));
 	}
+	
 	
 	@PostMapping("/modify")
 	public String modify(EmployeeVO emp,@ModelAttribute("cri")EmpCriteria cri, RedirectAttributes rttr) {

@@ -51,7 +51,7 @@
 		<include refid="empcriteria" />
 			
 			<![CDATA[
-			deptNum > 0
+			empNum > 0
 		 ]]>
 	</select>
 
