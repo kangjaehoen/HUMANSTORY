@@ -27,11 +27,11 @@
 		resultType="org.hs.domain.EmployeeVO">
 	<![CDATA[
 	SELECT
-		empNum,empName
+		empNum,empName,pw,job,phoneNum,hireDate,annualLeaveNum,workdate,birthdate
 	FROM
 		(
 			select
-				rownum rn,empNum,empName
+				rownum rn,empNum,empName, pw,job,phoneNum,hireDate,annualLeaveNum,workdate,birthdate
 			FROM EMPLOYEE
 			where
 	]]>

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import lombok.Data;
 import lombok.ToString;
+import lombok.extern.log4j.Log4j;
 
 @Data
 @ToString
@@ -23,5 +24,5 @@ public class EmployeeVO {
    private int authNum;
    private int deptNum;
    private DeptVO department; 
-   
-}
+  
+};

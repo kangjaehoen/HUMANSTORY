@@ -18,6 +18,7 @@ public class EmpCriteria {
 
   public EmpCriteria() {
     this(1, 10);
+    
   }
 
   public EmpCriteria(int emppageNum, int empamount) {

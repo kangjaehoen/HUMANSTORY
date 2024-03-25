@@ -61,7 +61,9 @@
 							<td><c:out value="${emp.annualLeaveNum}" /></td>
 							<td><c:out value="${emp.workDate}" /></td>
 							<td><c:out value="${emp.birthDate}" /></td>
-							<td><c:out value="${emp.department.deptName}" /></td>
+						
+							
+							
 						</tr>
 					</c:forEach>
 

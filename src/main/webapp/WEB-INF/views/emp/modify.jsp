@@ -40,7 +40,7 @@
 				  <input class="form-control" name='empName' 
 				    value='<c:out value="${emp.empName }"/>' >
 				</div>
-			
+				
 				
 				  <button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
 				  <button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
