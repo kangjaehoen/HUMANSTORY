@@ -17,6 +17,14 @@
         select * from LeavePolicyAttach where lpNum = #{lpNum}
     </select>
     
+    <delete id="delete">
+    	delete from LeavePolicyAttach where uuid =#{uuid}
+    </delete>
+    
+    <delete id="deleteAll">
+    	delete from LeavePolicyAttach where lpNum = #{lpNum}
+    </delete>
+    
 </mapper>
   
   

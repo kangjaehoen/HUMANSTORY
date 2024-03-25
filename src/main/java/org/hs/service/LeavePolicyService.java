@@ -5,6 +5,7 @@ import java.util.List;
 import org.hs.domain.Criteria;
 import org.hs.domain.LeavePolicyAttachVO;
 import org.hs.domain.LeavePolicyVO;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface LeavePolicyService {
 	public void registerLeavePolicy(LeavePolicyVO vo);
@@ -13,12 +14,13 @@ public interface LeavePolicyService {
 
 	public LeavePolicyVO getLeavePolicyOne(int lpNum);
 
-	public int modifyLeavePolicy(LeavePolicyVO vo);
+	public boolean modifyLeavePolicy(LeavePolicyVO vo);
 
 	public int removeLeavePolicy(int lpNum);
 
 	public int listTotal(Criteria cri);
 	
 	public List<LeavePolicyAttachVO> getAttachList(int lpNum);
+
 
 }

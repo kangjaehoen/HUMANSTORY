@@ -122,7 +122,7 @@ public class UploadController {
 			return contentType.startsWith("image");
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+	
 			e.printStackTrace();
 		}
 

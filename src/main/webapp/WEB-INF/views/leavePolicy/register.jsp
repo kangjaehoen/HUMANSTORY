@@ -8,25 +8,22 @@
 </head>
 <body>
 
-	<form role="form" action="register" method="post">
+	<form role="form" action="register" method="post" enctype="multipart/form-data">
 		임시 부서번호 :<input type="text" name="docNum" value=""> <br>
 		임시 사원번호 :<input type="text" name="empNum" value=""> <br>
-		제목 : <input type="text" name="title" value=""> <br> 내용 :
-		<input type="text" name="detail" value=""> <br> <input
-			type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />
-		<input type="submit" value="등록">
+		제목 : <input type="text" name="title" value=""> <br> 
+		내용 : <input type="text" name="detail" value=""> <br> 
+		
+		<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />
+		<input id="submitBtn" type="submit" value="등록">
 	</form>
 
-	<!-- 	 <form action="/uploadFormAction" method="post" enctype="multipart/form-data">
-    파일첨부: <input type="file" name="uploadFile" multiple>
-    <input type="submit" value="저장확인">
-</form>	
- -->
+
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 
-				<div class="panel-heading">File Attach</div>
+				<div class="panel-heading">파일 첨부</div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<div class="form-group uploadDiv">
@@ -54,9 +51,7 @@
 
 		var formObj = $("form[role='form']");
 
-		$("button[type='submit']").on(
-				"click",
-				function(e) {
+		$("#submitBtn").on("click",function(e) {
 					e.preventDefault();
 					console.log("submit clicked");
 					var str = "";
@@ -85,7 +80,7 @@
 							});
 
 					console.log(str);
-
+					
 					formObj.append(str).submit();
 				});
 

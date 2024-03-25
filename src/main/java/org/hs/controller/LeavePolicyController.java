@@ -42,7 +42,9 @@ public class LeavePolicyController {
 		
 		if (vo.getAttachList() != null) {
 			vo.getAttachList().forEach(attach -> log.info(attach));
+			log.info("AttachList 확인1 :"+vo.getAttachList());
 		}
+		log.info("AttachList 확인2 :"+vo.getAttachList());
 		
 		service.registerLeavePolicy(vo);
 		return "redirect:/leavePolicy/list";

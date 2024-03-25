@@ -11,6 +11,9 @@
 </head>
 <body>
 	<div>
+		<b>글번호 : ${get.lpNum }</b>
+	</div>
+	<div>
 		<b>제목 : ${get.title }</b>
 	</div>
 	<div>
@@ -20,6 +23,28 @@
 	<div>
 		<b>내용: ${get.detail }</b>
 	</div>
+	
+	<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">첨부 파일</div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        
+        <div class='uploadResult'> 
+          <ul>
+          
+          </ul>
+        </div>
+      </div>
+      <!--  end panel-body -->
+    </div>
+    <!--  end panel-body -->
+  </div>
+  <!-- end panel -->
+</div>
+	
 
 	<div>
 		<a href="update?lpNum=${get.lpNum }">수정하기</a>

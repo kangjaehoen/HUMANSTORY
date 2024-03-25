@@ -2,6 +2,10 @@ package org.hs.service;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hs.domain.LeavePolicyAttachVO;
 import org.hs.domain.LeavePolicyVO;
 import org.hs.mapper.LeavePolicyMapper;
 import org.junit.Test;
@@ -26,18 +30,29 @@ public class LeavePolicyServiceJunitTest {
 //		log.info(service);
 //	}
 	
-//	@Test
-//	public void testRegisterLeavePolicy() {
-//		LeavePolicyVO vo = new LeavePolicyVO();
-//		vo.setDocNum(2);
-// 		vo.setEmpNum(2);
-// 		vo.setTitle("보통연애");
-// 		vo.setDetail("박경");
-// 		
-// 		service.registerLeavePolicy(vo);
-//		
-//	
-//	}
+	@Test
+	public void testRegisterLeavePolicy() {
+		LeavePolicyVO vo = new LeavePolicyVO();
+		vo.setDocNum(2);
+ 		vo.setEmpNum(2);
+ 		vo.setTitle("보통연애");
+ 		vo.setDetail("박경");
+ 		
+ 		List<LeavePolicyAttachVO> attachList =new ArrayList<LeavePolicyAttachVO>();
+ 		LeavePolicyAttachVO attachVO = new LeavePolicyAttachVO();
+ 		attachVO.setUuid("123456-90ab-cdef-1234-567890abcdef");
+ 		attachVO.setUploadPath("C:\\Users\\KOSTA\\Desktop");
+ 		attachVO.setFileName("IU.jpg");
+ 		attachVO.setFileType(true);
+ 		attachList.add(attachVO);
+ 		
+ 		vo.setAttachList(attachList);
+ 		
+ 		service.registerLeavePolicy(vo);
+ 		assertNotNull(vo.getLpNum());
+ 		
+	
+	}
 	
 //	@Test
 //	public void testGetLeavePolicyOne() {
@@ -55,8 +70,8 @@ public class LeavePolicyServiceJunitTest {
 //		service.modifyLeavePolicy(vo);
 //	}
 	
-	@Test
-	public void testRemoveLeavePolicy() {
-		service.removeLeavePolicy(6);
-	}
+//	@Test
+//	public void testRemoveLeavePolicy() {
+//		service.removeLeavePolicy(6);
+//	}
 }

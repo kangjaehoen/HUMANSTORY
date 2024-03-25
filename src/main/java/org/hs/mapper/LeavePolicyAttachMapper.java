@@ -12,7 +12,9 @@ public interface LeavePolicyAttachMapper {
 	
 	public List<LeavePolicyAttachVO> findByBno(int lpNum);
 
+	public void delete(String uuid);
 	
+	public void deleteAll(int lpNum);
 
 	
 }
