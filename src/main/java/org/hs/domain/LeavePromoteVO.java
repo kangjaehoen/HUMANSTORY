@@ -3,22 +3,16 @@ package org.hs.domain;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.Data;
-import lombok.ToString;
 
 @Data
-public class LeavePolicyVO {
-	private int lpNum;
-	private int docNum;
+public class LeavePromoteVO {
+	private int lprNum;
 	private int empNum;
 	private String title;
 	private String detail;
 	private Date registerDate;
-
+	private Date updateDate;
 	
-	private List<AttachVO> attachList;
-	
-	
+	private List<PromoteAttachVO> attachList;
 }

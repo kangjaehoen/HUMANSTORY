@@ -2,8 +2,8 @@ package org.hs.service;
 
 import java.util.List;
 
+import org.hs.domain.AttachVO;
 import org.hs.domain.Criteria;
-import org.hs.domain.LeavePolicyAttachVO;
 import org.hs.domain.LeavePolicyVO;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,7 +20,7 @@ public interface LeavePolicyService {
 
 	public int listTotal(Criteria cri);
 	
-	public List<LeavePolicyAttachVO> getAttachList(int lpNum);
+	public List<AttachVO> getAttachList(int lpNum);
 
 
 }

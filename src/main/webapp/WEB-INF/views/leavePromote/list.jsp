@@ -34,8 +34,8 @@
 		});
 
 		$("#listTbody tr").click(function() {
-			var lpNum = $(this).find("td:first").text();
-			window.location.href = "get?lpNum=" + lpNum;
+			var lprNum = $(this).find("td:first").text();
+			window.location.href = "get?lprNum=" + lprNum;
 		});
 
 		$("#pageMaker").submit();
@@ -77,13 +77,13 @@
 				</tr>
 			</thead>
 			<tbody id="listTbody">
-				<c:forEach items="${list}" var="leavePromote">
+				<c:forEach items="${list}" var="leavePolicy">
 					<tr id="listTr">
-						<td>${leavePromote.lpNum }</td>
-						<td>${leavePromote.empNum }</td>
-						<td>${leavePromote.title }</td>
+						<td>${leavePolicy.lprNum }</td>
+						<td>${leavePolicy.empNum }</td>
+						<td>${leavePolicy.title }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd"
-								value="${leavePromote.registerDate}" /></td>
+								value="${leavePolicy.registerDate}" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>

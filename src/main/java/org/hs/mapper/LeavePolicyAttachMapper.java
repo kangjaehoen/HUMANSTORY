@@ -2,15 +2,16 @@ package org.hs.mapper;
 
 import java.util.List;
 
-import org.hs.domain.LeavePolicyAttachVO;
+import org.hs.domain.AttachVO;
+
 import org.hs.domain.LeavePolicyVO;
 
 
 public interface LeavePolicyAttachMapper {
 
-	public void insert(LeavePolicyAttachVO attach);
+	public void insert(AttachVO attach);
 	
-	public List<LeavePolicyAttachVO> findByBno(int lpNum);
+	public List<AttachVO> findByBno(int lpNum);
 
 	public void delete(String uuid);
 	

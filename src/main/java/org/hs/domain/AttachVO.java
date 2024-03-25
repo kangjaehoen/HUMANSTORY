@@ -3,7 +3,7 @@ package org.hs.domain;
 import lombok.Data;
 
 @Data
-public class LeavePolicyAttachVO {
+public class AttachVO {
 	private String uuid;
 	private String uploadPath;
 	private String fileName;

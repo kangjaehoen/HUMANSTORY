@@ -2,15 +2,14 @@ package org.hs.service;
 
 import java.util.List;
 
+import org.hs.domain.AttachVO;
 import org.hs.domain.Criteria;
-import org.hs.domain.LeavePolicyAttachVO;
 import org.hs.domain.LeavePolicyVO;
 import org.hs.mapper.LeavePolicyAttachMapper;
 import org.hs.mapper.LeavePolicyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Service
@@ -96,7 +95,7 @@ public class LeavePolicyServiceImpl implements LeavePolicyService{
 
 
 	@Override
-	public List<LeavePolicyAttachVO> getAttachList(int lpNum) {
+	public List<AttachVO> getAttachList(int lpNum) {
 		log.info("파일 첨부"+lpNum);
 		return lpMapper.findByBno(lpNum);
 	}

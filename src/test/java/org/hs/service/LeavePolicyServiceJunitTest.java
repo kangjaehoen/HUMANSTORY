@@ -1,13 +1,12 @@
 package org.hs.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hs.domain.LeavePolicyAttachVO;
+import org.hs.domain.AttachVO;
 import org.hs.domain.LeavePolicyVO;
-import org.hs.mapper.LeavePolicyMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +37,8 @@ public class LeavePolicyServiceJunitTest {
  		vo.setTitle("보통연애");
  		vo.setDetail("박경");
  		
- 		List<LeavePolicyAttachVO> attachList =new ArrayList<LeavePolicyAttachVO>();
- 		LeavePolicyAttachVO attachVO = new LeavePolicyAttachVO();
+ 		List<AttachVO> attachList =new ArrayList<AttachVO>();
+ 		AttachVO attachVO = new AttachVO();
  		attachVO.setUuid("123456-90ab-cdef-1234-567890abcdef");
  		attachVO.setUploadPath("C:\\Users\\KOSTA\\Desktop");
  		attachVO.setFileName("IU.jpg");

@@ -5,24 +5,24 @@
   
   <mapper namespace="org.hs.mapper.LeavePolicyAttachMapper">
   
-   <insert id="insert" parameterType="org.hs.domain.LeavePolicyAttachVO">
-        insert into LeavePolicyAttach (uuid, uploadpath, filename,
+   <insert id="insert" parameterType="org.hs.domain.AttachVO">
+        insert into Attach (uuid, uploadpath, filename,
         filetype, lpNum)
         values (#{uuid}, #{uploadPath}, #{fileName},
         #{fileType}, #{lpNum} )
     </insert>
     
     <select id="findByBno"
-             resultType="org.hs.domain.LeavePolicyAttachVO">
-        select * from LeavePolicyAttach where lpNum = #{lpNum}
+             resultType="org.hs.domain.AttachVO">
+        select * from Attach where lpNum = #{lpNum}
     </select>
     
     <delete id="delete">
-    	delete from LeavePolicyAttach where uuid =#{uuid}
+    	delete from Attach where uuid =#{uuid}
     </delete>
     
     <delete id="deleteAll">
-    	delete from LeavePolicyAttach where lpNum = #{lpNum}
+    	delete from Attach where lpNum = #{lpNum}
     </delete>
     
 </mapper>
