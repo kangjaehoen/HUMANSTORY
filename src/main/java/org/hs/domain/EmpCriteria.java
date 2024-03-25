@@ -8,21 +8,21 @@ import lombok.ToString;
 @ToString
 @Setter
 @Getter
-public class Criteria {
+public class EmpCriteria {
 
-  private int deptpageNum;
-  private int deptamount;
+  private int emppageNum;
+  private int empamount;
   
   private String type;
   private String keyword;
 
-  public Criteria() {
+  public EmpCriteria() {
     this(1, 10);
   }
 
-  public Criteria(int deptpageNum, int deptamount) {
-    this.deptpageNum = deptpageNum;
-    this.deptamount = deptamount;
+  public EmpCriteria(int emppageNum, int empamount) {
+    this.emppageNum = emppageNum;
+    this.empamount = empamount;
   }
   
   public String[] getTypeArr() {

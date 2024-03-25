@@ -4,57 +4,113 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.hs.mapper.EmpMapper">
 
-<select id="getList" resultType="org.hs.domain.EmployeeVO">
+	<sql id="empcriteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()"> deptNum like '%'||#{keyword}||'%' </when>
+						<when test="type == 'C'.toString()"> deptName like '%'||#{keyword}||'%' </when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getList" resultType="org.hs.domain.EmployeeVO">
 	<![CDATA[
 		select*from employee where empNum>0
 	]]>
-</select>
+	</select>
 
-<resultMap id="EmpDeptResultMap" type="org.hs.domain.EmployeeVO">
-    <id property="empNum" column="EMPNUM"/>
-    <result property="empName" column="EMPNAME"/>
-    <association property="department" javaType="org.hs.domain.DeptVO">
-        <result property="deptName" column="DEPTNAME"/>
-    </association>
-</resultMap>
+	<select id="getListWithPaging"
+		resultType="org.hs.domain.EmployeeVO">
+	<![CDATA[
+	SELECT
+		empNum,empName
+	FROM
+		(
+			select
+				rownum rn,empNum,empName
+			FROM EMPLOYEE
+			where
+	]]>
+		<include refid="empcriteria" />
+	 <![CDATA[
+             rownum <= #{emppageNum}*#{empamount}
+         )
+         WHERE rn > (#{emppageNum}-1)*#{empamount}
 
-<select id="EmpjoinDept" resultMap="EmpDeptResultMap">
-	SELECT e.EMPNUM, e.EMPNAME, d.DEPTNAME
-	FROM Employee e
-	JOIN DEPARTMENTS d ON e.DEPTNUM = d.DEPTNUM
-	
-</select>
+      ]]>
+	</select>
+	<select id="getTotalCount" resultType="int">
+	<![CDATA[
+			select count(*) from EMPLOYEE where
+			]]>
+
+		<include refid="empcriteria" />
+			
+			<![CDATA[
+			deptNum > 0
+		 ]]>
+	</select>
 
 
 
-<select id="read" resultType="org.hs.domain.EmployeeVO">
-	select*from employee where empNum=#{empNum}
-</select>
+	<resultMap id="EmpDeptResultMap"
+		type="org.hs.domain.EmployeeVO">
+		<id property="empNum" column="EMPNUM" />
+		<result property="empName" column="EMPNAME" />
+		<association property="department"
+			javaType="org.hs.domain.DeptVO">
+			<result property="deptName" column="DEPTNAME" />
+		</association>
+	</resultMap>
 
-<insert id="insertEmpInfo">
-    INSERT INTO employee (empNum, empName, pw, job, phoneNum,hireDate, annualLeaveNum,workDate,birthDate, adminNum, authNum, deptNum) 
-    VALUES (empNum_seq.NEXTVAL, #{empName},#{pw}, #{job}, #{phoneNum},#{hireDate}, #{annualLeaveNum}, #{workDate},#{birthDate}, #{adminNum}, #{authNum}, #{deptNum})
-</insert>
+	<select id="EmpjoinDept" resultMap="EmpDeptResultMap">
+		SELECT e.EMPNUM, e.EMPNAME,
+		d.DEPTNAME
+		FROM Employee e
+		JOIN DEPARTMENTS d ON e.DEPTNUM = d.DEPTNUM
 
-<update id="update">
-	update employee set
-	empName=#{empName},
-	pw=#{pw},
-	job=#{job},
-	phoneNum=#{phoneNum},
-	hireDate=#{hireDate},
-	annualLeaveNum=#{annualLeaveNum},
-	workDate=#{workDate},
-	birthDate=#{birthDate},
-	adminNum=#{adminNum},
-	authNum=#{authNum},
-	deptNum=#{deptNum}
-	
-	where empNum=#{empNum}
-</update>
+	</select>
 
-<delete id="delete">
-	delete employee where empNum=#{empNum}
-</delete>
+
+
+	<select id="read" resultType="org.hs.domain.EmployeeVO">
+		select*from employee where
+		empNum=#{empNum}
+	</select>
+
+	<insert id="insertEmpInfo">
+		INSERT INTO employee (empNum, empName, pw, job,
+		phoneNum,hireDate,
+		annualLeaveNum,workDate,birthDate, adminNum,
+		authNum, deptNum)
+		VALUES (empNum_seq.NEXTVAL, #{empName},#{pw}, #{job},
+		#{phoneNum},#{hireDate}, #{annualLeaveNum}, #{workDate},#{birthDate},
+		#{adminNum}, #{authNum}, #{deptNum})
+	</insert>
+
+	<update id="update">
+		update employee set
+		empName=#{empName},
+		pw=#{pw},
+		job=#{job},
+		phoneNum=#{phoneNum},
+		hireDate=#{hireDate},
+		annualLeaveNum=#{annualLeaveNum},
+		workDate=#{workDate},
+		birthDate=#{birthDate},
+		adminNum=#{adminNum},
+		authNum=#{authNum},
+		deptNum=#{deptNum}
+
+		where empNum=#{empNum}
+	</update>
+
+	<delete id="delete">
+		delete employee where empNum=#{empNum}
+	</delete>
 
 </mapper>

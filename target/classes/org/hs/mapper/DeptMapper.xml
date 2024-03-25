@@ -3,26 +3,26 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.hs.mapper.DeptMapper">
-<sql id="criteria">
-	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-		<foreach collection="typeArr">
-			<trim prefix="OR">
-				<choose>
-					<when test="type == 'T'.toString()"> deptNum like '%'||#{keyword}||'%' </when>
-					<when test="type == 'C'.toString()"> deptName like '%'||#{keyword}||'%' </when>
-				</choose>
-			</trim>
-		</foreach>
-	</trim>
-</sql>
-<select id="getList" resultType="org.hs.domain.DeptVO">
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()"> deptNum like '%'||#{keyword}||'%' </when>
+						<when test="type == 'C'.toString()"> deptName like '%'||#{keyword}||'%' </when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	<select id="getList" resultType="org.hs.domain.DeptVO">
 	<![CDATA[
 		select*from DEPARTMENTS where deptNum>0
 	]]>
-</select>
+	</select>
 
-<select id="getListWithPaging"
-		resultType="org.hs.domain.DeptVO">
+	<select id="getListWithPaging" resultType="org.hs.domain.DeptVO">
 		<![CDATA[
          SELECT 
             deptNum,deptName
@@ -36,15 +36,15 @@
 		<include refid="criteria" />
 		<!--위의 id가 criteria인 애를 데려온것과 같다는 말이다. -->
             <![CDATA[
-             rownum <= #{pageNum}*#{amount}
+             rownum <= #{deptpageNum}*#{deptamount}
          )
-         WHERE rn > (#{pageNum}-1)*#{amount}
+         WHERE rn > (#{deptpageNum}-1)*#{deptamount}
 
       ]]>
 
 	</select>
 
-<select id="getTotalCount" resultType="int">
+	<select id="getTotalCount" resultType="int">
 		<![CDATA[
 			select count(*) from DEPARTMENTS where
 			]]>
@@ -57,24 +57,24 @@
 	</select>
 
 
-<select id="read" resultType="org.hs.domain.DeptVO">
-	select*from DEPARTMENTS where deptNum=#{deptNum}
-</select>
+	<select id="read" resultType="org.hs.domain.DeptVO">
+		select*from DEPARTMENTS where deptNum=#{deptNum}
+	</select>
 
-<insert id="insertDeptInfo">
-    INSERT INTO DEPARTMENTS (deptNum, deptName) 
-    VALUES (deptNum_seq.NEXTVAL, #{deptName})
-</insert>
+	<insert id="insertDeptInfo">
+		INSERT INTO DEPARTMENTS (deptNum, deptName)
+		VALUES (deptNum_seq.NEXTVAL, #{deptName})
+	</insert>
 
-<update id="update">
-	update DEPARTMENTS set
-	deptName=#{deptName}
-	
-	where deptNum=#{deptNum}
-</update>
+	<update id="update">
+		update DEPARTMENTS set
+		deptName=#{deptName}
 
-<delete id="delete">
-	delete DEPARTMENTS where deptNum=#{deptNum}
-</delete>
+		where deptNum=#{deptNum}
+	</update>
+
+	<delete id="delete">
+		delete DEPARTMENTS where deptNum=#{deptNum}
+	</delete>
 
 </mapper>

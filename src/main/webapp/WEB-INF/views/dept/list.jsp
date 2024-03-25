@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <div class="row">
 	<div class="col-lg-12">
@@ -17,8 +18,8 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Board List Page
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register
-					New department</button>
+				<button id='regBtn' type="button" class="btn btn-xs pull-left">
+				Register New department</button>
 				<button id='modiBtn' type="button" class="btn btn-xs pull-right">
 					Update department</button>
 			</div>
@@ -39,8 +40,13 @@
 						<tr>
 							<td><input type="checkbox" class="deptCheckbox"
 								value="<c:out value='${dept.deptNum}' />"></td>
-							<td><c:out value="${dept.deptNum}" /></td>
-							<td><c:out value="${dept.deptName}" /></td>
+							<td>
+							<c:out value="${dept.deptNum}" />
+							</td>
+							<td>
+							<c:out value="${dept.deptName}" />
+							</td>
+
 
 						</tr>
 					</c:forEach>
@@ -55,13 +61,15 @@
 									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
 								<option value="C"
 									<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>부서명</option>
+
+							</select>
+							 <input type='text' name='keyword'
+								value='<c:out value="${pageMaker.cri.keyword}"/>' /> 
+							<input type='hidden' name='deptpageNum'
+								value='<c:out value="${pageMaker.cri.deptpageNum}"/>' /> 
+							<input type='hidden' name='deptamount'
+								value='<c:out value="${pageMaker.cri.deptamount}"/>' />
 								
-							</select> <input type='text' name='keyword'
-								value='<c:out value="${pageMaker.cri.keyword}"/>' /> <input
-								type='hidden' name='pageNum'
-								value='<c:out value="${pageMaker.cri.pageNum}"/>' /> <input
-								type='hidden' name='amount'
-								value='<c:out value="${pageMaker.cri.amount}"/>' />
 							<button class='btn btn-default'>Search</button>
 						</form>
 					</div>
@@ -70,21 +78,6 @@
 
 				<div class='pull-right'>
 					<ul class="pagination">
-<%-- 
-						<c:if test="${pageMaker.prev}">
-							<li class="paginate_button previous"><a href="#">Previous</a>
-							</li>
-						</c:if>
-
-						<c:forEach var="num" begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}">
-							<li class="paginate_button"><a href="#">${num}</a></li>
-						</c:forEach>
-
-						<c:if test="${pageMaker.next}">
-							<li class="paginate_button next"><a href="#">Next</a></li>
-						</c:if>
- --%>
 						<c:if test="${pageMaker.prev}">
 							<li class="paginate_button previous"><a
 								href="${pageMaker.startPage -1}">Previous</a></li>
@@ -92,7 +85,7 @@
 
 						<c:forEach var="num" begin="${pageMaker.startPage}"
 							end="${pageMaker.endPage}">
-							<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
+							<li class="paginate_button  ${pageMaker.cri.deptpageNum == num ? "active":""} ">
 								<!--active를 사용해서 찐하게 보이도록 함  --> <a href="${num}">${num}</a>
 							</li>
 						</c:forEach>
@@ -109,16 +102,15 @@
 			</div>
 
 			<form id='actionForm' action="/dept/list" method='get'>
-				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+				<input type='hidden' name='deptpageNum' value='${pageMaker.cri.deptpageNum}'>
+				<input type='hidden' name='deptamount' value='${pageMaker.cri.deptamount}'>
 
 				<input type='hidden' name='type'
 					value='<c:out value="${ pageMaker.cri.type }"/>'> <input
 					type='hidden' name='keyword'
 					value='<c:out value="${ pageMaker.cri.keyword }"/>'>
-
-
 			</form>
+			
 			<!-- Modal  추가 -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
@@ -167,15 +159,9 @@
 
 						function checkModal(result) {
 
-							if (result === '' || history.state) {
+							 if (result === '' || history.state) {
 								return;
-							}
-
-							if (parseInt(result) > 0) {
-								$(".modal-body").html(
-										"게시글 " + parseInt(result)
-												+ " 번이 등록되었습니다.");
-							}
+							} 
 
 							$("#myModal").modal("show");
 						}
@@ -219,28 +205,11 @@
 
 									console.log('click');
 
-									actionForm.find("input[name='pageNum']")
+									actionForm.find("input[name='deptpageNum']")
 											.val($(this).attr("href"));
 									actionForm.submit();
 								});
-/* 
-						$(".move")
-								.on(
-										"click",
-										function(e) {
-
-											e.preventDefault();
-											actionForm
-													.append("<input type='hidden' name='deptNum' value='"
-															+ $(this).attr(
-																	"href")
-															+ "'>");
-											actionForm.attr("action",
-													"/dept/get");
-											actionForm.submit();
-
-										});
- */
+						
 						var searchForm = $("#searchForm");
 
 						$("#searchForm button").on(
@@ -259,7 +228,7 @@
 										return false;
 									}
 
-									searchForm.find("input[name='pageNum']")
+									searchForm.find("input[name='deptpageNum']")
 											.val("1");
 									e.preventDefault();
 

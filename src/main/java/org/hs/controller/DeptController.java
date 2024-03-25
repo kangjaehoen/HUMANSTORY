@@ -2,7 +2,7 @@ package org.hs.controller;
 
 import org.hs.domain.Criteria;
 import org.hs.domain.DeptVO;
-import org.hs.domain.PageDTO;
+import org.hs.domain.DeptPageDTO;
 import org.hs.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class DeptController {
 	public void list(Criteria cri,Model model) {
 		log.info("list");
 		model.addAttribute("list",service.getList(cri));
-		model.addAttribute("pageMaker",new PageDTO(cri, service.getTotal(cri)));
+		model.addAttribute("pageMaker",new DeptPageDTO(cri, service.getTotal(cri)));
 	}
 	@GetMapping("/register")
 	public void register() {
@@ -56,8 +56,8 @@ public class DeptController {
 			rttr.addFlashAttribute("result","success");
 			
 		};
-		rttr.addAttribute("pageNum",cri.getPageNum());
-		rttr.addAttribute("amount",cri.getAmount());
+		rttr.addAttribute("deptdeptpageNum",cri.getDeptpageNum());
+		rttr.addAttribute("deptamount",cri.getDeptamount());
 
 		
 		return "redirect:/dept/list";
@@ -67,11 +67,10 @@ public class DeptController {
 	public String remove(@RequestParam("deptNum") int deptNum, Criteria cri,RedirectAttributes rttr) {
 		if(service.remove(deptNum)) {
 			rttr.addFlashAttribute("result","success");
-			log.info("성공했어");
 		}
 		;
-		rttr.addAttribute("result",cri.getPageNum());
-		rttr.addAttribute("amount",cri.getAmount());
+		rttr.addAttribute("result",cri.getDeptpageNum());
+		rttr.addAttribute("deptamount",cri.getDeptamount());
 		
 		return "redirect:/dept/list";
 		

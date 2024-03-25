@@ -7,7 +7,7 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Department Register</h1>
+    <h1 class="page-header">Employee Register</h1>
   </div>
   <!-- /.col-lg-12 -->
 </div>
@@ -17,28 +17,28 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">Department Modify</div>
+      <div class="panel-heading">Employee Modify</div>
       <!-- /.panel-heading -->
       <div class="panel-body">
 	
-	      <form role="form" action="/dept/modify" method="post">
+	      <form role="form" action="/emp/modify" method="post">
 	       
-	        <input type='hidden' name='deptpageNum' value='<c:out value="${cri.deptpageNum }"/>'>
-	        <input type='hidden' name='deptamount' value='<c:out value="${cri.deptamount }"/>'>
+	        <input type='hidden' name='emppageNum' value='<c:out value="${cri.emppageNum }"/>'>
+	        <input type='hidden' name='empamount' value='<c:out value="${cri.empamount }"/>'>
 		    <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
 			<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>
 	       
 		 
 				<div class="form-group">	
-				  <label>deptNum</label> 
-				  <input class="form-control" name='deptNum' 
-				     value='<c:out value="${dept.deptNum }"/>' readonly="readonly">
+				  <label>empNum</label> 
+				  <input class="form-control" name='empNum' 
+				     value='<c:out value="${emp.empNum}"/>' readonly="readonly">
 				</div>
 				
 				<div class="form-group">
-				  <label>DeptName</label> 
-				  <input class="form-control" name='deptName' 
-				    value='<c:out value="${dept.deptName }"/>' >
+				  <label>empName</label> 
+				  <input class="form-control" name='empName' 
+				    value='<c:out value="${emp.empName }"/>' >
 				</div>
 			
 				
@@ -74,11 +74,11 @@ $(document).ready(function() {
 	    console.log(operation);
 	     
 	    if(operation === 'remove'){
-	      formObj.attr("action", "/dept/remove");
+	      formObj.attr("action", "/emp/remove");
 	      
 	    }else if(operation === 'list'){
 	      //move to list
-	     self.location="/dept/list";
+	     self.location="/emp/list";
 	      return;
 	      
 	    }

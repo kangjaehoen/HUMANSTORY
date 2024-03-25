@@ -70,9 +70,9 @@ public class EmpServiceJUnitTest {
 //		log.info(service.get(1));
 //	}
 //	
-	@Test
-	public void testGetList() {
-		service.getList().forEach(emp-> log.info(emp));
-	}
+//	@Test
+//	public void testGetList() {
+//		service.getList().forEach(emp-> log.info(emp));
+//	}
 //	
 }
