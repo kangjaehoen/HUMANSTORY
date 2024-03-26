@@ -19,10 +19,10 @@
 
 	<select id="getList" resultType="org.hs.domain.LeavePolicyVO">
 		<![CDATA[
-		SELECT lpNum, empNum, title, detail
+		SELECT lpNum, empNum, title, detail, register
 		FROM(
 		SELECT /*+INDEX_DESC(leavePolicy PK_leavePolicy) */
-		rownum rn, lpNum, empNum,title, detail
+		rownum rn, lpNum, empNum,title, detail, register
 		FROM leavePolicy
 		WHERE rownum<= #{pageNum} * #{amount}
 		)
