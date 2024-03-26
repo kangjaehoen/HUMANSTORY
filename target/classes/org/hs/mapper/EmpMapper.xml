@@ -9,8 +9,8 @@
 			<foreach collection="typeArr">
 				<trim prefix="OR">
 					<choose>
-						<when test="type == 'T'.toString()"> deptNum like '%'||#{keyword}||'%' </when>
-						<when test="type == 'C'.toString()"> deptName like '%'||#{keyword}||'%' </when>
+						<when test="type == 'T'.toString()"> empNum like '%'||#{keyword}||'%' </when>
+						<when test="type == 'C'.toString()"> empName like '%'||#{keyword}||'%' </when>
 					</choose>
 				</trim>
 			</foreach>

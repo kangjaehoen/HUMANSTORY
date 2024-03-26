@@ -105,19 +105,19 @@
 					<ul class="pagination">
 						<c:if test="${emppageMaker.prev}">
 							<li class="paginate_button previous"><a
-								href="?emppageNum=${emppageMaker.startPage - 1}">Previous</a></li>
+								href="${emppageMaker.startPage - 1}">Previous</a></li>
 						</c:if>
 						<c:forEach var="num" begin="${emppageMaker.startPage}"
 							end="${emppageMaker.endPage}">
 							<li
 								class="paginate_button ${emppageMaker.cri.emppageNum == num ? 'active' : ''}">
-								<a href="?emppageNum=${num}">${num}</a>
+								<a href="${num}">${num}</a>
 							</li>
 						</c:forEach>
 
 						<c:if test="${emppageMaker.next}">
 							<li class="paginate_button next"><a
-								href="?emppageNum=${emppageMaker.endPage + 1}">Next</a></li>
+								href="${emppageMaker.endPage + 1}">Next</a></li>
 						</c:if>
 					</ul>
 
@@ -177,13 +177,13 @@
 	$(document)
 			.ready(
 					function() {
-
+						$("#myModal").modal("hide");
 						var result = '<c:out value="${result}"/>';
 
 						checkModal(result);
 
 						history.replaceState({}, null, null);
-
+						
 						function checkModal(result) {
 
 							if (result === '' || history.state) {

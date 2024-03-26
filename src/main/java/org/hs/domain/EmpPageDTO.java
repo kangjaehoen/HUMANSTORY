@@ -33,7 +33,7 @@ public class EmpPageDTO {
     this.prev = this.startPage > 1;
 
     this.next = this.endPage < realEnd;
-//    System.out.println("결과: " + this);
+    System.out.println("결과: " + this);
   }
   
 }
