@@ -51,6 +51,8 @@
 	</div>
 	<form action="delete" method="post">
 		<input type="hidden" name="lpNum" value="${get.lpNum }">
+		<input type="hidden" name="${_csrf.parameterName}"
+    value="${_csrf.token}" />
 		<input type="submit" value="삭제">
 	</form>
 	

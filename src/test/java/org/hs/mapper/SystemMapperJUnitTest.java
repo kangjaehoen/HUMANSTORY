@@ -54,13 +54,13 @@ public class SystemMapperJUnitTest {
 //	         log.info(emp);    
 //	    }
 
-//	@Test
-//	public void testUpdateAnnualLeave() {
-//		AnnualLeaveDTO dto = new AnnualLeaveDTO();
-//		dto.setAnnualNum(15);
-//		dto.setLeaveDay("0322");
-//		log.info(dto);
-//		mapper.updateAnnualLeave(dto);
-//	}
+	@Test
+	public void testUpdateAnnualLeave() {
+		AnnualLeaveDTO dto = new AnnualLeaveDTO();
+		dto.setAnnualNum(15);
+		dto.setLeaveDay("0326");
+		log.info(dto);
+		mapper.updateAnnualLeave(dto);
+	}
 
 }

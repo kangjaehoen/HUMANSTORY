@@ -12,6 +12,8 @@
 			제목 : <input type="text" name="title" value="${get.title }"><br>
 			내용 : <input type="text" name="detail" value="${get.detail }"><br>
 			<input type="hidden" name="lpNum" value="${get.lpNum }"> 
+			<input type="hidden" name="${_csrf.parameterName}"
+    value="${_csrf.token}" />
 			<input id="submitBtn" type="submit" value="수정완료">
 		</form>
 	</div>

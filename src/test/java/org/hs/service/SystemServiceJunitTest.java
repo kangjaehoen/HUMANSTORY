@@ -24,7 +24,7 @@ public class SystemServiceJunitTest {
 	public void testUPdateLeaveAnnual() {
 		AnnualLeaveDTO dto = new AnnualLeaveDTO();
 		dto.setAnnualNum(15);
-		dto.setLeaveDay("0322");
+		dto.setLeaveDay("0326");
 		log.info("service : "+dto);
 		service.updateLeaveAnnual(dto);
 	}
