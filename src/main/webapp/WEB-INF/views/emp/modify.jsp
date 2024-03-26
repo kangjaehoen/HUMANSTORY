@@ -2,6 +2,8 @@
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -39,6 +41,66 @@
 				  <label>empName</label> 
 				  <input class="form-control" name='empName' 
 				    value='<c:out value="${emp.empName }"/>' >
+				</div>
+				
+				<div class="form-group">
+				  <label>pw</label> 
+				  <input class="form-control" name='pw' 
+				    value='<c:out value="${emp.pw }"/>' >
+				</div>
+				
+				<div class="form-group">
+				  <label>job</label> 
+				  <input class="form-control" name='job' 
+				    value='<c:out value="${emp.job }"/>' >
+				</div>
+				
+				<div class="form-group">
+				  <label>phoneNum</label> 
+				  <input class="form-control" name='phoneNum' 
+				    value='<c:out value="${emp.phoneNum }"/>' >
+				</div>
+				
+				<div class="form-group">
+				  <label>hireDate</label> 
+				  <input class="form-control" name='hireDate' 
+				    value='<c:out value="${emp.hireDate }"/>' >
+				</div>
+				
+				<div class="form-group">
+				  <label>email</label> 
+				  <input class="form-control" name='email' 
+				    value='<c:out value="${emp.email }"/>' >
+				</div>
+				
+				<div class="form-group">
+				  <label>annualLeaveNum</label> 
+				  <input class="form-control" name='annualLeaveNum' 
+				    value='<c:out value="${emp.annualLeaveNum }"/>' >
+				</div>
+				
+				<div class="form-group">
+				  <label>address</label> 
+				  <input class="form-control" name='address' 
+				    value='<c:out value="${emp.address }"/>' >
+				</div>
+				
+				<div class="form-group">
+				  <label>workDate</label> 
+				  <input class="form-control" name='workDate' 
+				    value='<c:out value="${emp.workDate }"/>' >
+				</div>
+				
+				<div class="form-group">
+				  <label>birthDate</label> 
+				  <input class="form-control" name='birthDate' 
+				    value='<c:out value="${emp.birthDate }"/>' >
+				</div>
+				
+				<div class="form-group">
+				  <label>department</label> 
+				  <input class="form-control" name='department' 
+				    value='<c:out value="${emp.department.deptName }"/>' >
 				</div>
 				
 				
@@ -89,7 +151,3 @@ $(document).ready(function() {
 });
 </script>
   
-
-
-
-

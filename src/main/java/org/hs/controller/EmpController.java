@@ -20,6 +20,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/emp/*")
 @Log4j
 public class EmpController {
+	
 	@Autowired
 	private EmpService service;
 	
