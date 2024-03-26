@@ -239,8 +239,8 @@
 							<nav aria-label="Page navigation example">
 								<ul class="pagination">
 									<c:if test="${pageMaker.prev}">
-										<li class="paginate_button previous"><a
-											aria-label="Previous" href="${pageMaker.startPage -1}">Previous</a></li>
+										<li class="paginate_button previous"><a aria-label="Previous" 
+											href="${pageMaker.startPage -1}">Previous</a></li>
 									</c:if>
 
 									<c:forEach var="num" begin="${pageMaker.startPage}"
@@ -255,53 +255,52 @@
 										<li class="paginate_button next"><a aria-label="Next"
 											href="${pageMaker.endPage +1 }">Next</a></li>
 									</c:if>
-								</ul>
 							</nav>
 						</div>
 					</div>
 				</div>
-
-				<!--  end Pagination -->
+				</ul>
 			</div>
-
-			<form id='actionForm' action="/dept/list" method='get'>
-				<input type='hidden' name='deptpageNum'
-					value='${pageMaker.cri.deptpageNum}'> <input type='hidden'
-					name='deptamount' value='${pageMaker.cri.deptamount}'> <input
-					type='hidden' name='type'
-					value='<c:out value="${ pageMaker.cri.type }"/>'> <input
-					type='hidden' name='keyword'
-					value='<c:out value="${ pageMaker.cri.keyword }"/>'>
-			</form>
-
-			<!-- Modal  추가 -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-						</div>
-						<div class="modal-body">처리가 완료되었습니다.</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save
-								changes</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal-dialog -->
-			</div>
-			<!-- /.modal -->
-
+			<!--  end Pagination -->
 		</div>
-		<!--  end panel-body -->
+
+		<form id='actionForm' action="/dept/list" method='get'>
+			<input type='hidden' name='deptpageNum'
+				value='${pageMaker.cri.deptpageNum}'> <input type='hidden'
+				name='deptamount' value='${pageMaker.cri.deptamount}'> <input
+				type='hidden' name='type'
+				value='<c:out value="${ pageMaker.cri.type }"/>'> <input
+				type='hidden' name='keyword'
+				value='<c:out value="${ pageMaker.cri.keyword }"/>'>
+		</form>
+
+		<!-- Modal  추가 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+					</div>
+					<div class="modal-body">처리가 완료되었습니다.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+
 	</div>
-	<!-- end panel -->
+	<!--  end panel-body -->
+</div>
+<!-- end panel -->
 </div>
 </div>
 <!-- /.row -->
