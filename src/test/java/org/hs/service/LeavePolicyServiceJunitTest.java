@@ -32,7 +32,6 @@ public class LeavePolicyServiceJunitTest {
 	@Test
 	public void testRegisterLeavePolicy() {
 		LeavePolicyVO vo = new LeavePolicyVO();
-		vo.setDocNum(2);
  		vo.setEmpNum(2);
  		vo.setTitle("보통연애");
  		vo.setDetail("박경");

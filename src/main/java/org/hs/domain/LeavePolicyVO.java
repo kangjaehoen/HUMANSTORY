@@ -11,7 +11,6 @@ import lombok.ToString;
 @Data
 public class LeavePolicyVO {
 	private int lpNum;
-	private int docNum;
 	private int empNum;
 	private String title;
 	private String detail;

@@ -10,11 +10,11 @@
 			select lpNum_seq.nextval from dual
 		</selectKey>
 
-		insert into leavePolicy(lpNum, docNum, empNum, title,
+		insert into leavePolicy(lpNum, empNum, title,
 		detail,
 		registerDate)
 		values
-		(#{lpNum},#{docNum},#{empNum},#{title},#{detail},sysdate)
+		(#{lpNum},#{empNum},#{title},#{detail},sysdate)
 	</insert>
 
 	<select id="getList" resultType="org.hs.domain.LeavePolicyVO">

@@ -9,7 +9,6 @@
 <body>
 
 	<form role="form" action="register" method="post" enctype="multipart/form-data">
-		임시 부서번호 :<input type="text" name="docNum" value=""> <br>
 		임시 사원번호 :<input type="text" name="empNum" value=""> <br>
 		제목 : <input type="text" name="title" value=""> <br> 
 		내용 : <input type="text" name="detail" value=""> <br> 
