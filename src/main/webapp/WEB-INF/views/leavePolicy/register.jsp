@@ -5,9 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="resources/js/summernote-lite.js"></script>
-<script src="resources/js/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="resources/css/summernote-lite.css">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <style type="text/css">
 .container {
 	max-width: 600px;
@@ -15,7 +13,7 @@
 	padding-left: 70px;
 	padding-right: 70px;
 	padding-top: 20px;
-	padding-bottom: 200px;
+	padding-bottom: 30px;
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	background-color: #fff;
@@ -29,10 +27,20 @@ label{
 	width: 100%;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border-bottom: 3px solid #ddd;
+    border-left:none;
+    border-right:none;
+    border-top:none;
     box-sizing: border-box;
     margin-bottom: 30px;
+    height: 80px;
+    font-size:24px;
+    padding-bottom: 0px;
+    margin-top: 15px;
+}
+
+#title:focus {
+    outline: none;
 }
 
 #detail{
@@ -43,7 +51,9 @@ label{
     border-radius: 5px;
     box-sizing: border-box;
     height: 300px;
+    
 }
+
 
 /* 입력 필드와 라벨 스타일 */
 .input-group {
@@ -139,14 +149,15 @@ label{
 #submitBtn {
 	display: block;
 	width: 100%;
-	padding: 10px;
-	font-size: 16px;
+	padding: 13px;
+	font-size: 18px;
 	background-color: #b5b7e5;
 	color: #fff;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	transition: background-color 0.3s;
+	margin-top: 30px;
 }
 
 #submitBtn:hover {
@@ -155,22 +166,26 @@ label{
 </style>
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/lang/summernote-ko-KR.js"></script>
+
 	<div class="container">
 		<form role="form" action="register" method="post"
 			enctype="multipart/form-data">
 			<!-- 게시물 정보 입력 부분 -->
-			<div id>
+		<!-- 	<div>
 				<label for="empNum">임시 사원번호:</label> <input type="text" id="empNum"
 					name="empNum" >
-			</div>
+			</div> -->
 			<div>
-				<label for="title">제목:</label> <input type="text" id="title"
+				<input type="text" id="title"
 					name="title" placeholder="제목을 입력해주세요.">
 			</div>
 				
-			<div>
-				<label for="detail">내용:</label>
-				<textarea id="detail" name="detail" placeholder="내용을 입력해주세요."></textarea>
+			<div id="detailDiv">
+				<input type="text" id="summernote" name="detail" placeholder="내용을 입력해주세요."/>
 			</div>
 
 			<input type="hidden" name="${_csrf.parameterName}"
@@ -179,28 +194,31 @@ label{
 		</form>
 		
 		
-	<div id="summernote">Hello Summernote</div>
+	
 		
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 
-				<div class="panel-heading">파일 첨부</div>
+				<div class="panel-heading"></div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<div class="form-group uploadDiv">
-						<div class="upload-box" onclick="document.getElementById('uploadInput').click();">
-							<div>파일을 여기에 끌어다 놓거나</div>
+						<div class="upload-box" id="dropArea">
   							<div>클릭하여 파일을 선택하세요.</div>
 							<input type="file" name='uploadFile' multiple>
+							
+								<div class='uploadResult'>
+									<ul>
+
+									</ul>
+								</div>
+							
 						</div>
 					</div>
+					
 
-					<div class='uploadResult'>
-						<ul>
-
-						</ul>
-					</div>
+				
 
 
 				</div>
@@ -214,8 +232,6 @@ label{
 		
 </div>
 
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
 
@@ -374,21 +390,22 @@ label{
 
 				uploadUL.append(str);
 			}
-
 		})
 	</script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		//여기 아래 부분
+		//여기 아래 부분a
 		$('#summernote').summernote({
 			  height: 300,                 // 에디터 높이
 			  minHeight: null,             // 최소 높이
 			  maxHeight: null,             // 최대 높이
 			  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
 			  lang: "ko-KR",					// 한글 설정
-			  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+			  placeholder: '내용을 입력해주세요.'	//placeholder 설정
 	          
 		});
+		
+	
 	});
 	
 	</script>
