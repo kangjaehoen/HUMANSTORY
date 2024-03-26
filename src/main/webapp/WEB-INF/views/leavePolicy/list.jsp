@@ -10,13 +10,51 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-#page {
-	list-style-type: none;
+	#page {
+		list-style-type: none;
 }
 
-#page li {
-	display: inline;
-	margin-right: 20px;
+	#page li {
+		display: inline;
+		margin-right: 20px;
+}
+
+	#divBox {
+		border: 1px solid;
+		display: inline-block;
+		padding: 5px;
+		width: 980px;
+		height: 560px;
+		margin-top: 130px;
+		margin-left: 300px;
+}
+
+	tr {
+		border-bottom: 1px solid;
+		height: 50px;
+}
+
+	td {
+		text-align: center;
+}
+
+	#bno {
+		width: 80px;
+		text-align: center; /* 번호를 가운데 정렬합니다. */
+}
+	#writer{
+		width:80px;
+	}
+	
+	#title{
+		width : 400px;
+	}
+	#registerDate{
+		width : 400px;
+	}
+
+	thead {
+		background-color: rgb(220, 220, 220);
 }
 </style>
 <script
@@ -39,51 +77,59 @@
 		});
 
 		$("#pageMaker").submit();
-		
+
 		$("#pageClick a").click(function(e) {
-		    e.preventDefault(); 
-		    let num = $(this).text();
-		    console.log(num);
-		    
-		    $("#pageNum").find("input[name='pageNum']").val(num);
-		    $("#pageNum").submit();
+			e.preventDefault();
+			let num = $(this).text();
+			console.log(num);
+
+			$("#pageNum").find("input[name='pageNum']").val(num);
+			$("#pageNum").submit();
 		});
 
 		$("#pagePrev a").click(function(e) {
-		    e.preventDefault();
-		    let prev = ${page.startPage} - 1;
-		    $("#pageNum").find("input[name='pageNum']").val(prev);
-		    $("#pageNum").submit();
+			e.preventDefault();
+			let prev = $
+			{
+				page.startPage
+			}
+			-1;
+			$("#pageNum").find("input[name='pageNum']").val(prev);
+			$("#pageNum").submit();
 		});
 
 		$("#pageNext a").click(function(e) {
-		    e.preventDefault();
-		    let next = ${page.endPage} + 1;
-		    $("#pageNum").find("input[name='pageNum']").val(next);
-		    $("#pageNum").submit();
-			});
+			e.preventDefault();
+			let next = $
+			{
+				page.endPage
+			}
+			+1;
+			$("#pageNum").find("input[name='pageNum']").val(next);
+			$("#pageNum").submit();
 		});
+	});
 </script>
 </head>
 <body>
-	<div>
+	<div id="divBox">
 		<table>
 			<thead>
 				<tr>
-					<th>#번호</th>
-					<th>작성자번호</th>
-					<th>제목</th>
-					<th>등록일</th>
+					<th id="bno">번호</th>
+					<th id="writer">작성자번호</th>
+					<th id="title">제목</th>
+					<th id="registerDate">등록일</th>
 				</tr>
 			</thead>
 			<tbody id="listTbody">
-				<c:forEach items="${list}" var="leavePromote">
+				<c:forEach items="${list}" var="leavePolicy">
 					<tr id="listTr">
-						<td>${leavePromote.lpNum }</td>
-						<td>${leavePromote.empNum }</td>
-						<td>${leavePromote.title }</td>
+						<td>${leavePolicy.lpNum }</td>
+						<td>${leavePolicy.empNum }</td>
+						<td>${leavePolicy.title }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd"
-								value="${leavePromote.registerDate}" /></td>
+								value="${leavePolicy.registerDate}" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
