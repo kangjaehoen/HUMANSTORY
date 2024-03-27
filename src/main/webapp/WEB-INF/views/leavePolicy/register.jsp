@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>등록폼</title>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <style type="text/css">
 .container {
@@ -184,7 +184,7 @@ label{
 			</div>
 				
 			<div id="detailDiv">
-				<textarea  type="text" id="summernote" name="detail" placeholder="내용을 입력해주세요."/></textarea>
+				<textarea id="summernote" name="detail" placeholder="내용을 입력해주세요."/></textarea>
 			</div>
 
 			<input type="hidden" name="${_csrf.parameterName}"
@@ -392,7 +392,7 @@ label{
 			}
 		})
 	</script>
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
 		
 		$('#summernote').summernote({
@@ -408,6 +408,6 @@ label{
 	
 	});
 	
-	</script>
+</script>
 </body>
 </html>
