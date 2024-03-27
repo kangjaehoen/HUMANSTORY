@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    /* CSS to center the image */
+  
     .center {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 70vh; /* This will center vertically */
-        flex-direction: column; /* 세로로 정렬 */
+        height: 70vh; 
+        flex-direction: column; 
     }
 
     /* Remove underline from link */

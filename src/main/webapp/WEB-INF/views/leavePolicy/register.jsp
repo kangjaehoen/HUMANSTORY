@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>등록폼</title>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <style type="text/css">
 .container {
@@ -144,7 +144,6 @@ label{
     background-color: #d32f2f;
 }
 
-
 /* 등록 버튼 스타일 */
 #submitBtn {
 	display: block;
@@ -185,12 +184,13 @@ label{
 			</div>
 				
 			<div id="detailDiv">
-				<input type="text" id="summernote" name="detail" placeholder="내용을 입력해주세요."/>
+				<textarea id="summernote" name="detail" placeholder="내용을 입력해주세요."/></textarea>
 			</div>
 
 			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" /> <input id="submitBtn" type="submit"
-				value="등록">
+				value="${_csrf.token}" />
+				
+			 <input id="submitBtn" type="submit" value="등록">
 		</form>
 		
 		
@@ -392,9 +392,9 @@ label{
 			}
 		})
 	</script>
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
-		//여기 아래 부분a
+		
 		$('#summernote').summernote({
 			  height: 300,                 // 에디터 높이
 			  minHeight: null,             // 최소 높이
@@ -403,11 +403,11 @@ label{
 			  lang: "ko-KR",					// 한글 설정
 			  placeholder: '내용을 입력해주세요.'	//placeholder 설정
 	          
-		});
-		
+		})
+	
 	
 	});
 	
-	</script>
+</script>
 </body>
 </html>
