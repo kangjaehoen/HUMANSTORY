@@ -9,13 +9,15 @@ public interface EmpMapper{
 
 	public List<EmployeeVO> getList();
 	
-	public EmployeeVO read(int empNum);
+	public EmployeeVO read(String empNum);
+	
+	public EmployeeVO authread(String empNum);
 	
 	public List<EmployeeVO> getListWithPaging(EmpCriteria cri);
 	
 	public void insertEmpInfo(EmployeeVO emp);
 	
-	public int delete(int empNum);
+	public int delete(String empNum);
 	
 	public int update(EmployeeVO emp);
 	

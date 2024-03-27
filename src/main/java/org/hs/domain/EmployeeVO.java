@@ -1,15 +1,15 @@
 package org.hs.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 import lombok.ToString;
-import lombok.extern.log4j.Log4j;
 
 @Data
 @ToString
 public class EmployeeVO {
-   private int empNum;
+   private String empNum;
    private String empName;
    private String pw;
    private String job; // Á÷Ã¥ÀÓ.
@@ -23,6 +23,7 @@ public class EmployeeVO {
    private int adminNum;
    private int authNum;
    private int deptNum;
-   private DeptVO department; 
-  
+   private  List<DeptVO>  department; 
+   private boolean enabled;
+   private List<AuthVO> authList;
 };

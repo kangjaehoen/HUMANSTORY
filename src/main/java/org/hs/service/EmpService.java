@@ -12,11 +12,12 @@ public interface EmpService {
 	
 	public List<EmployeeVO> getList(EmpCriteria cri);
 	
-	public EmployeeVO get(int empNum);
+	public EmployeeVO get(String empNum);
 	
 	public boolean modify(EmployeeVO emp);
-	
-	public boolean remove(int empNum);
+	String empNum="";
+	int empnum=Integer.parseInt(empNum);
+	public boolean remove(String empnum);
 	
 	public int getTotal(EmpCriteria cri);
 }

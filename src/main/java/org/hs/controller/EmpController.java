@@ -44,10 +44,10 @@ public class EmpController {
 		}
 	
 	@GetMapping({"/get" ,"/modify"})
-		public void get(@RequestParam("empNum") int empNum,@ModelAttribute("cri")EmpCriteria cri, Model model) {
+		public void get(@RequestParam("empNum") String empNum,@ModelAttribute("cri")EmpCriteria cri, Model model) {
 		
 		log.info("/get or modify");
-		model.addAttribute("emp",service.get(empNum));
+//		model.addAttribute("emp",service.get(empNum));
 	}
 	
 	
@@ -65,7 +65,7 @@ public class EmpController {
 		return "redirect:/emp/list";
 	}
 	@PostMapping("/remove")
-	public String remove(@RequestParam("empNum") int empNum,EmpCriteria cri, RedirectAttributes rttr) {
+	public String remove(@RequestParam("empNum") String empNum,EmpCriteria cri, RedirectAttributes rttr) {
 		if(service.remove(empNum)) {
 			rttr.addFlashAttribute("result","success");
 		}

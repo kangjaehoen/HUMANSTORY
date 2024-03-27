@@ -29,7 +29,7 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	@Override
-	public EmployeeVO get(int empNum) {
+	public EmployeeVO get(String empNum) {
 		return mapper.read(empNum);
 	}
 
@@ -39,7 +39,7 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	@Override
-	public boolean remove(int empNum) {
+	public boolean remove(String empNum) {
 		return mapper.delete(empNum)==1;
 	}
 

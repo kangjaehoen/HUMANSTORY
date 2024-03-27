@@ -51,14 +51,13 @@
 		<include refid="empcriteria" />
 			
 			<![CDATA[
-			empNum > 0
+			adminNum >= 0
 		 ]]>
 	</select>
 
 
-
-	<resultMap id="EmpDeptResultMap"
-		type="org.hs.domain.EmployeeVO">
+	<resultMap type="org.hs.domain.EmployeeVO"
+		id="EmpDeptResultMap">
 		<id property="empNum" column="EMPNUM" />
 		<result property="empName" column="EMPNAME" />
 		<association property="department"
@@ -67,11 +66,46 @@
 		</association>
 	</resultMap>
 
+	<resultMap type="org.hs.domain.EmployeeVO" id="managerMap">
+    <id property="empNum" column="empNum" />
+    <result property="empNum" column="empNum" />
+    <result property="empName" column="empName" />
+    <result property="pw" column="pw" />
+    <result property="job" column="job" />
+    <result property="phoneNum" column="phoneNum" />
+    <result property="hireDate" column="hireDate" />
+    <result property="email" column="email" />
+    <result property="annualLeaveNum" column="annualLeaveNum" />
+    <result property="address" column="address" />
+    <result property="workDate" column="workDate" />
+    <result property="birthDate" column="birthDate" />
+    <result property="adminNum" column="adminNum" />
+    <result property="authNum" column="authNum" />
+    <result property="deptNum" column="deptNum" />
+    <collection property="authList" resultMap="authMap"></collection>
+    <!-- <collection property="deptList" resultMap="EmpDeptResultMap"></collection> -->
+</resultMap>
+
+
+	<resultMap type="org.hs.domain.AuthVO" id="authMap">
+		<result property="empNum" column="empNum" />
+		<result property="auth" column="auth" />
+	</resultMap>
+
 	<select id="EmpjoinDept" resultMap="EmpDeptResultMap">
-		SELECT e.EMPNUM, e.EMPNAME,
-		d.DEPTNAME
+		SELECT e.EMPNUM, e.EMPNAME, d.DEPTNAME
 		FROM Employee e
 		JOIN DEPARTMENTS d ON e.DEPTNUM = d.DEPTNUM
+
+	</select>
+
+	<select id="authread" resultMap="managerMap">
+
+		SELECT
+		e.empNum, e.EMPNAME, e.pw, e.enabled, ea.auth
+		FROM Employee e 
+		JOIN EMPLOYEE_AUTH ea ON e.empNum=ea.empNum
+		where e.empNum=#{empNum}
 
 	</select>
 
