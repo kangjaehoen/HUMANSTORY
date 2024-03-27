@@ -144,7 +144,6 @@ label{
     background-color: #d32f2f;
 }
 
-
 /* 등록 버튼 스타일 */
 #submitBtn {
 	display: block;
@@ -189,8 +188,9 @@ label{
 			</div>
 
 			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" /> <input id="submitBtn" type="submit"
-				value="등록">
+				value="${_csrf.token}" />
+				
+			 <input id="submitBtn" type="submit" value="등록">
 		</form>
 		
 		
@@ -404,7 +404,16 @@ label{
 			  placeholder: '내용을 입력해주세요.'	//placeholder 설정
 	          
 		});
-		
+	    $('#summernote').on('summernote.change', function() {
+            $('#detail').val($('#summernote').summernote('code'));
+        });
+
+        
+        $("#submitBtn").on("click", function(e) {
+            e.preventDefault();
+         
+            $("form[role='form']").submit();
+        });
 	
 	});
 	

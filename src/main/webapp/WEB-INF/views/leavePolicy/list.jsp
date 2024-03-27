@@ -230,8 +230,6 @@ thead {
 		</ul>
 	</div>
 
-
-
 	<div>
 		<input id="registerBtn" type="button" value="휴가 정책 등록">
 	</div>
