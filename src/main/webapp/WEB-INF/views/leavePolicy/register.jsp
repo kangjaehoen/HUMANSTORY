@@ -184,7 +184,7 @@ label{
 			</div>
 				
 			<div id="detailDiv">
-				<input type="text" id="summernote" name="detail" placeholder="내용을 입력해주세요."/>
+				<textarea  type="text" id="summernote" name="detail" placeholder="내용을 입력해주세요."/></textarea>
 			</div>
 
 			<input type="hidden" name="${_csrf.parameterName}"
@@ -394,7 +394,7 @@ label{
 	</script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		//여기 아래 부분a
+		
 		$('#summernote').summernote({
 			  height: 300,                 // 에디터 높이
 			  minHeight: null,             // 최소 높이
@@ -403,17 +403,8 @@ label{
 			  lang: "ko-KR",					// 한글 설정
 			  placeholder: '내용을 입력해주세요.'	//placeholder 설정
 	          
-		});
-	    $('#summernote').on('summernote.change', function() {
-            $('#detail').val($('#summernote').summernote('code'));
-        });
-
-        
-        $("#submitBtn").on("click", function(e) {
-            e.preventDefault();
-         
-            $("form[role='form']").submit();
-        });
+		})
+	
 	
 	});
 	
