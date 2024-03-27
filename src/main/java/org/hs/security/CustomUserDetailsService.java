@@ -21,7 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		log.warn(empNum);
 		EmployeeVO vo=mapper.authread(empNum);
-		log.warn("quried by member mapper:"+vo);
+		log.warn("quried by manager mapper:"+vo);
 //		return null;
 		return vo==null?null: new CustomEMP(vo);
 	}

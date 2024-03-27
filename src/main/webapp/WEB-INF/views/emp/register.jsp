@@ -23,7 +23,7 @@
       <div class="panel-body">
 
         <form role="form" action="/emp/register" method="post">
-          
+          <input type="hidden"name="${_csrf.parameterName}"value="${_csrf.token}"/>
           <div class="form-group">
 	            <label>empName</label> 
 	            <input class="form-control" name='empName'>
@@ -63,6 +63,8 @@
             Button</button>
           <button type="reset" class="btn btn-default">Reset Button</button>
         </form>
+
+
 
       </div>
       <!--  end panel-body -->

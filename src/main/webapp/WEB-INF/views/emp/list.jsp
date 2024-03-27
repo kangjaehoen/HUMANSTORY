@@ -159,9 +159,10 @@
 					Log
 				</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#" data-toggle="modal"
-					data-target="#logoutModal"> <i
-					class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+
+				<a class="dropdown-item" href="/customLogout?${_csrf.parameterName}=${_csrf.token}" data-toggle="modal"
+					data-target="#logoutModal"> 
+					<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 					Logout
 				</a>
 			</div></li>
@@ -185,13 +186,14 @@
 					class="btn btn-xs btn-secondary float-right mr-2">Register
 					New employee</button>
 				<button id='modiBtn' type="button"
-					class="btn btn-xs btn-secondary float-right mr-2"
-					>Update employee</button>
+					class="btn btn-xs btn-secondary float-right mr-2">Update
+					employee</button>
 			</div>
 			<div class='row'>
 				<div class="col-sm-12 col-md-5">
 
 					<form id='searchForm' action="/emp/list" method='get'>
+					<input type="hidden"name="${_csrf.parameterName}"value="${_csrf.token}"/>
 						<select name='type'>
 							<option value=""
 								<c:out value="${emppageMaker.cri.type == null?'selected':''}"/>>--</option>

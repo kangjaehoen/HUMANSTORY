@@ -24,6 +24,8 @@
       <div class="panel-body">
 	
 	      <form role="form" action="/emp/modify" method="post">
+	       <input type="hidden"name="${_csrf.parameterName}"value="${_csrf.token}"/>
+	       
 	       
 	        <input type='hidden' name='emppageNum' value='<c:out value="${cri.emppageNum }"/>'>
 	        <input type='hidden' name='empamount' value='<c:out value="${cri.empamount }"/>'>
