@@ -1,6 +1,7 @@
 package org.hs.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 import lombok.ToString;
@@ -8,7 +9,7 @@ import lombok.ToString;
 @Data
 @ToString
 public class EmployeeVO {
-   private int empNum;
+   private String empNum;
    private String empName;
    private String pw;
    private String job; // 직책임.
@@ -22,4 +23,6 @@ public class EmployeeVO {
    private int adminNum;
    private int authNum;
    private int deptNum;
+   private List<LeaveRecordsVO> leaveRecords;
+
 }

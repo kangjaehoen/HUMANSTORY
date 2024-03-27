@@ -21,6 +21,6 @@ public interface LeavePolicyService {
 	public int listTotal(Criteria cri);
 	
 	public List<AttachVO> getAttachList(int lpNum);
-
+	
 
 }

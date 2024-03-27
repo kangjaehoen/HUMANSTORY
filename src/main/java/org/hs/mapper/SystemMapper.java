@@ -10,6 +10,13 @@ import org.hs.domain.LeaveRecordsVO;
 
 public interface SystemMapper {
 	public int insertEmpInfo(EmployeeVO emp);
+
 	public List<EmployeeVO> getEmployeesToUpdate();
+
 	public int updateAnnualLeave(AnnualLeaveDTO dto);
+
+	public int leaveGrantDay(AnnualLeaveDTO dto);
+	
+
+	public String leaveGrantDayApply();
 }

@@ -25,7 +25,7 @@ public class SystemController {
 
 	@GetMapping("/annualForm")
 	public void annualForm(Model model) {
-		log.info("헤헤 이동한다.");
+		log.info("annualForm 이동");
 	}
 
 //	@PostMapping("/annualLeave")
@@ -47,4 +47,15 @@ public class SystemController {
 		service.updateLeaveAnnual(dto);
 		return "redirect:/system/annualForm";
 	}   
+	
+	@PostMapping("leaveGrant")
+		public String leaveGrant(@ModelAttribute AnnualLeaveDTO dto) {
+			
+		log.info("휴가날 선정");
+		
+		service.leaveGrnathDay(dto);
+		return "redirect:/system/annualForm";
+			
+				
+		}
 }

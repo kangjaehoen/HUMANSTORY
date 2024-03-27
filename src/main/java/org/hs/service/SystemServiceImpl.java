@@ -26,7 +26,15 @@ public class SystemServiceImpl implements SystemService {
 	@Override
 	public int updateLeaveAnnual(AnnualLeaveDTO dto) {
 		System.out.println("service : "+dto);
+		
+		String leaveDay = mapper.leaveGrantDayApply();
+		dto.setLeaveDay(leaveDay);
 		return mapper.updateAnnualLeave(dto);
 	}
-	
+
+	@Override
+	public int leaveGrnathDay(AnnualLeaveDTO dto) {
+		System.out.println("service : "+dto.getLeaveDay());
+		return mapper.leaveGrantDay(dto);
+	}
 }
