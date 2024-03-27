@@ -189,8 +189,8 @@ thead {
 		});
 
 		$("#listTbody tr").click(function() {
-			var lpNum = $(this).find("td:first").text();
-			window.location.href = "get?lpNum=" + lpNum;
+			var lprNum = $(this).find("td:first").text();
+			window.location.href = "get?lprNum=" + lprNum;
 		});
 
 		$("#pageMaker").submit();

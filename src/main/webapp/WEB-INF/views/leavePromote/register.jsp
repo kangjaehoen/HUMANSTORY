@@ -4,36 +4,221 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>촉진 등록폼</title>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<style type="text/css">
+.container {
+	max-width: 600px;
+	margin: 50px auto;
+	padding-left: 70px;
+	padding-right: 70px;
+	padding-top: 20px;
+	padding-bottom: 30px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+label{
+	font-size: 20px;
+}
+
+#title{
+	width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 3px solid #ddd;
+    border-left:none;
+    border-right:none;
+    border-top:none;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    height: 80px;
+    font-size:24px;
+    padding-bottom: 0px;
+    margin-top: 15px;
+}
+
+#title:focus {
+    outline: none;
+}
+
+#detail{
+	width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 300px;
+    
+}
+
+
+/* 입력 필드와 라벨 스타일 */
+.input-group {
+	margin-bottom: 20px;
+}
+
+.input-group label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.input-group input[type="text"], .input-group textarea {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.input-group textarea {
+	height: 150px;
+}
+.panel-body {
+    padding: 20px;
+}
+
+.uploadDiv label {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #b5b7e5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.uploadDiv label:hover {
+    background-color: #5c5e91;
+}
+
+.uploadResult ul {
+    list-style: none;
+    padding: 0;
+}
+
+.uploadResult li {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.uploadResult li span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.uploadResult li img {
+    max-width: 100px;
+    height: auto;
+    margin-top: 5px;
+    display: block;
+}
+
+.uploadResult li button {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 14px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.upload-box {
+  border: 2px dashed #aaa;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.uploadResult li button:hover {
+    background-color: #d32f2f;
+}
+
+/* 등록 버튼 스타일 */
+#submitBtn {
+	display: block;
+	width: 100%;
+	padding: 13px;
+	font-size: 18px;
+	background-color: #b5b7e5;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	margin-top: 30px;
+}
+
+#submitBtn:hover {
+	background-color: #5c5e91;
+}
+
+</style>
 </head>
 <body>
-
-	<form role="form" action="register" method="post" enctype="multipart/form-data">
-		임시 사원번호 :<input type="text" name="empNum" value=""> <br>
-		제목 : <input type="text" name="title" value=""> <br> 
-		내용 : <input type="text" name="detail" value=""> <br> 
-		
-		<input type='hidden' name='${_csrf.parameterName}' value='${_csrf.token}' />
-		<input id="submitBtn" type="submit" value="등록">
-	</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/lang/summernote-ko-KR.js"></script>
 
 
-	<div class="row">
+	<div class="container">
+		<form role="form" action="register" method="post"
+			enctype="multipart/form-data">
+			<!-- 게시물 정보 입력 부분 -->
+		<!-- 	<div>
+				<label for="empNum">임시 사원번호:</label> <input type="text" id="empNum"
+					name="empNum" >
+			</div> -->
+			<div>
+				<input type="text" id="title"
+					name="title" placeholder="제목을 입력해주세요.">
+			</div>
+				
+			<div id="detailDiv">
+				<textarea id="summernote" name="detail" placeholder="내용을 입력해주세요."/></textarea>
+			</div>
+
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+				
+			 <input id="submitBtn" type="submit" value="등록">
+		</form>
+
+
+<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 
-				<div class="panel-heading">파일 첨부</div>
+				<div class="panel-heading"></div>
 				<!-- /.panel-heading -->
 				<div class="panel-body">
 					<div class="form-group uploadDiv">
-						<input type="file" name='uploadFile' multiple>
-					</div>
+						<div class="upload-box" id="dropArea">
+  							<div>클릭하여 파일을 선택하세요.</div>
+							<input type="file" name='uploadFile' multiple>
+							
+								<div class='uploadResult'>
+									<ul>
 
-					<div class='uploadResult'>
-						<ul>
-
-						</ul>
+									</ul>
+								</div>
+							
+						</div>
 					</div>
+					
+
+				
 
 
 				</div>
@@ -44,7 +229,8 @@
 		<!-- end panel -->
 	</div>
 	<!-- /.row -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		
+	</div>
 	<script type="text/javascript">
 	$(function() {
 
@@ -182,6 +368,22 @@
 		}
 
 	})
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		
+		$('#summernote').summernote({
+			  height: 300,                 // 에디터 높이
+			  minHeight: null,             // 최소 높이
+			  maxHeight: null,             // 최대 높이
+			  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+			  lang: "ko-KR",					// 한글 설정
+			  placeholder: '내용을 입력해주세요.'	//placeholder 설정
+	          
+		})
+	
+	
+	});
 	</script>
 </body>
 </html>
