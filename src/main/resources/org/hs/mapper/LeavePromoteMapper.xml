@@ -19,10 +19,10 @@
 
 	<select id="getList" resultType="org.hs.domain.LeavePromoteVO">
 		<![CDATA[
-		SELECT lprNum, empNum, title, detail
+		SELECT lprNum, empNum, title, detail, registerDate
 		FROM(
 		SELECT /*+INDEX_DESC(leavePromote PK_leavePromote) */
-		rownum rn, lprNum, empNum,title, detail
+		rownum rn, lprNum, empNum,title, detail, registerDate
 		FROM leavePromote
 		WHERE rownum<= #{pageNum} * #{amount}
 		)

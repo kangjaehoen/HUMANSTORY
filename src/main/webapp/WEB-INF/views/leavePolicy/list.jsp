@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>휴가 정책</title>
 
 <style type="text/css">
 #divBox {
@@ -49,6 +49,7 @@ tr:nth-child(even) {
 
 td {
 	font-size: 15px;
+	padding: 14px;
 }
 
 #bno {
