@@ -9,6 +9,8 @@ import lombok.ToString;
 @Setter
 @Getter
 public class Criteria {
+	private int pageNum;
+	private int amount;
 
 	private int deptpageNum;
 	private int deptamount;
@@ -17,20 +19,18 @@ public class Criteria {
 	private String keyword;
 
 	public Criteria() {
-		this(1, 10);
+		this(1, 10 ,1, 10);
 	}
 
-	public Criteria(int pageNum, int amount) {
+	public Criteria(int pageNum, int amount,int deptpageNum, int deptamount) {
 		super();
 		this.pageNum = pageNum;
 		this.amount = amount;
-	}
-
-	public Criteria(int deptpageNum, int deptamount) {
 		this.deptpageNum = deptpageNum;
 		this.deptamount = deptamount;
 	}
 
+	
 	public String[] getTypeArr() {
 
 		return type == null ? new String[] {} : type.split("");
