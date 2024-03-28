@@ -15,5 +15,7 @@ import org.springframework.context.annotation.Configuration;
 		        scheduler.start(); // 스케줄러 시작
 		        return scheduler;
 		    }
+		  
+		  
 	}
 

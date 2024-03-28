@@ -64,21 +64,25 @@
 		#{deptNum})
 	</insert>
 
-	<select id="getEmployeesToUpdate"
-		resultType="org.hs.domain.EmployeeVO" statementType="STATEMENT">
-		SELECT * FROM
-		employees
-		WHERE TO_CHAR(SYSDATE, 'MMDD') = '0101' AND workDate > 365
-	</select>
 
 		
 	<update id="leaveGrantDay">
-		UPDATE leave SET leaveGrantDay=#{leaveDay}
+		UPDATE leave SET leaveGrantDay=#{leaveDay} WHERE leaveNum  =1
+	</update>
+	
+	<update id="annulLeaveNumSet">
+		UPDATE leave SET leaveNumSet=#{annualNum} WHERE leaveNum  =1
 	</update>
 		
 	<select id="leaveGrantDayApply" resultType="org.hs.domain.LeaveVO">
-    	select leaveGrantDay FROM Leave where leaveNum =1
+    	SELECT leaveGrantDay FROM Leave WHERE leaveNum =1
 	</select>
+	
+	<select id="annulLeaveNumSetApply" resultType="org.hs.domain.LeaveVO">
+		SELECT leaveNumSet FROM Leave WHERE leaveNum =1
+	</select>
+	
+	
 
 	<update id="updateAnnualLeave">
 	<![CDATA[ 
@@ -101,6 +105,7 @@
 	]]>
 	</update> 
 
+	
 	
 	
  	

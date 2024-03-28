@@ -28,34 +28,28 @@ public class SystemController {
 		log.info("annualForm 이동");
 	}
 
-//	@PostMapping("/annualLeave")
-//	public String annualList(
-//			 @RequestParam("leaveGrantDay") String leaveGrantDay,
-//	          @RequestParam("annualLeaveNum") int annualLeaveNum	   
-//			) {
-//		log.info("휴가 부여");
-//		log.info(leaveGrantDay);
-//		log.info(annualLeaveNum);
-//		service.updateLeaveAnnual(leaveGrantDay,annualLeaveNum);
-//		return "redirect:/system/annualForm";
-//	}   
-	
 	@PostMapping("/annualLeave")
 	public String annualList(@ModelAttribute AnnualLeaveDTO dto) {
-		log.info("휴가 부여");
+		log.info("휴가 자동 부여");
 		log.info("contorllter: " + dto);
 		service.updateLeaveAnnual(dto);
 		return "redirect:/system/annualForm";
 	}   
 	
-	@PostMapping("leaveGrant")
+	@PostMapping("/leaveGrant")
 		public String leaveGrant(@ModelAttribute AnnualLeaveDTO dto) {
-			
 		log.info("휴가날 선정");
-		
+		log.info(dto);
+		log.info(dto.getLeaveDay());
 		service.leaveGrnathDay(dto);
 		return "redirect:/system/annualForm";
-			
 				
 		}
+	@PostMapping("/annualNumSetting")
+		public String annualNumSetting(@ModelAttribute AnnualLeaveDTO dto) {
+		log.info("휴가일수 선정");
+		service.annulLeaveSet(dto);
+		return "redirect:/system/annualForm";
+	}
+	
 }
