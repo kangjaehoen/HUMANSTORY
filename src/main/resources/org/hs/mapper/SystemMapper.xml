@@ -67,11 +67,11 @@
 
 		
 	<update id="leaveGrantDay">
-		UPDATE leave SET leaveGrantDay=#{leaveDay} WHERE leaveNum  =1
+		UPDATE leave SET leaveGrantDay=#{leaveDay} WHERE leaveNum  = 1
 	</update>
 	
 	<update id="annulLeaveNumSet">
-		UPDATE leave SET leaveNumSet=#{annualNum} WHERE leaveNum  =1
+		UPDATE leave SET leaveNumSet=#{annualNum} WHERE leaveNum  = 1
 	</update>
 		
 	<select id="leaveGrantDayApply" resultType="org.hs.domain.LeaveVO">

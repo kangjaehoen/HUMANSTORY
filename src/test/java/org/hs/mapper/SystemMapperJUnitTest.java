@@ -23,22 +23,22 @@ public class SystemMapperJUnitTest {
 	@Autowired
 	private SystemMapper mapper;
 
-	@Test
-	public void testInsertEmpInfo() {
-	    EmployeeVO emp = new EmployeeVO();
-	    emp.setEmpName("침착ㅇㅇ맨123");
-	    emp.setJob("지금 내손을 잡아123");
-	    emp.setPw("사건의 지평선123");
-	    emp.setPhoneNum(72127);
-	    emp.setAnnualLeaveNum(1);
-	    emp.setBirthDate(93075);
-	    emp.setAdminNum(18);
-	    emp.setAuthNum(18);
-	    emp.setDeptNum(18);
-	    emp.setWorkDate(200);
+//	@Test
+//	public void testInsertEmpInfo() {
+//	    EmployeeVO emp = new EmployeeVO();
+//	    emp.setEmpName("침착ㅇㅇ맨123");
+//	    emp.setJob("지금 내손을 잡아123");
+//	    emp.setPw("사건의 지평선123");
+//	    emp.setPhoneNum(72127);
+//	    emp.setAnnualLeaveNum(1);
+//	    emp.setBirthDate(93075);
+//	    emp.setAdminNum(18);
+//	    emp.setAuthNum(18);
+//	    emp.setDeptNum(18);
+//	    emp.setWorkDate(200);
 
-	    mapper.insertEmpInfo(emp);
-	}
+//	    mapper.insertEmpInfo(emp);
+//	}
 //	
 //	@Test
 //	public void GrantannualLeaveNum() {
@@ -75,6 +75,11 @@ public class SystemMapperJUnitTest {
 //		mapper.leaveGrantDayApply();
 //		
 //	}
+	@Test
+	public void testleaveGrantDayApply() {
+		LeaveVO leave =mapper.leaveGrantDayApply();
+		log.info(leave);
+	}
 	
 
 }
