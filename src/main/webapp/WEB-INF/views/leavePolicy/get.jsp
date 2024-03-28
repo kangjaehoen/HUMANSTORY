@@ -1,13 +1,11 @@
+<%@include file="../includes/sideBar.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <style type="text/css">
+
 body {
 	font-family: Arial, sans-serif;
 	background-color: #f8f9fa;
@@ -16,13 +14,14 @@ body {
 }
 
 .container {
-	max-width: 800px;
+	max-width: 1000px;
 	margin: 50px auto;
 	padding: 20px;
 	border: 1px solid #ddd;
 	border-radius: 10px;
 	background-color: #fff;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-top: 80px;
 }
 
 .heading {
@@ -121,7 +120,7 @@ body {
 	padding: 15px 40px;
 	border: none;
 	border-radius: 5px;
-	background-color: #b1b1b1;
+	background-color: rgb(31, 41, 55);
 	color: #fff;
 	text-decoration: none;
 	cursor: pointer;
@@ -203,11 +202,59 @@ body {
     display: none; 
 }
 
+
+.navigation {
+    margin-left: 430px;
+    margin-top: 100px;
+   
+         
+}
+
+
+.navigation div {
+    display: inline;
+    padding-bottom: 10px;
+    margin-right: 50px;
+
+}
+
+.navigation div a {
+    text-decoration: none;
+    color: #a5a5a5;
+    font-weight: bold;
+    display: block; /* a태그는 글자성격 = inline */
+    float: left;
+    font-size: 16px;
+  	font-weight: 900;
+  	line-height: 80px;
+  	padding: 0 30px;
+  	margin-right: 10px;
+  	
+  	
+}
+
+.navigation div a:hover {
+    color: #2900c5; 
+}
+
+#policyNav{
+ 	color: #333; 
+}
+
+#policyNav:hover{	
+	color: #2900c5;
+}
+
 </style>
 
-<title>Document</title>
-</head>
-<body>
+		<div class="navigation">
+			<div><a href="/">메인페이지</a></div>
+			<div><a href="/system/annualForm">휴가 일수 부여 설정</a></div>
+			<div><a href="/">권한 부여</a></div>
+			<div><a href="/leavePromote/list">휴가 촉진</a></div>
+			<div><a id="policyNav" href="/leavePolicy/list">휴가 정책</a></div>
+	</div>
+
 
 	<div class="container">
 		<div class="heading">휴가 정책 게시글</div>
@@ -236,8 +283,8 @@ body {
 			<div class="title2">내용</div>
 			<div>${get.detail}</div>
 		</div>
-
-		<div class="panel">
+	
+	<div class="panel">
 			<div class="panel-heading">첨부 파일</div>
 			<div class="panel-body">
 				<div class="uploadResult">
@@ -247,13 +294,13 @@ body {
 				</div>
 			</div>
 		</div>
-	</div>
-
 	<div class="buttons">
-		<a href="update?lpNum=${get.lpNum}">수정하기</a> 
+		<a href="update?lpNum=${get.lpNum }">수정하기</a>
 		<a id="deleteBtn">삭제하기</a>
 	</div>
+</div>	
 
+	
 	<div id="myModal" class="modal">
 		<!-- 모달 내용 -->
 		<div class="modal-content">
@@ -264,112 +311,87 @@ body {
 			<button id="cancleDeleteBtn">취소</buttom>
 		</div>
 	</div>
-
+	
 	<form id="deleteSubmit" action="delete" method="post">
-		<input type="hidden" name="lpNum" value="${get.lpNum}"> <input
-			type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<input type="hidden" name="lpNum" value="${get.lpNum }">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
+	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript">
-		$(function() {
+	(function(){
+		
+		var lpNum = "${get.lpNum}";	
+		
+		 $.getJSON("/leavePolicy/getAttachList", {lpNum: lpNum}, function(arr){	 
+			   console.log("==============");
+		       console.log(arr);	       
+		       var str = "";
+		       
+		       $(arr).each(function(i, attach){	       
+		         //image type
+		         if(attach.fileType){
+		           var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
+		           
+		           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+		           str += "<img src='/display?fileName="+fileCallPath+"'>";
+		           str += "</div>";
+		           str +"</li>";
+		         }else{
+		             
+		           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+		           str += "<span> "+ attach.fileName+"</span><br/>";
+		           str += "<img src='/resources/img/attach.png'></a>";
+		           str += "</div>";
+		           str +"</li>";
+		         }
+		       });
+		       
+		       $(".uploadResult ul").html(str);      
+		       
+		});//end getjson	
+	})();
+	
+	
+	  $(".uploadResult").on("click","li", function(e){
+	      
+		    console.log("view image");
+		    
+		    var liObj = $(this);
+		    
+		    var path = encodeURIComponent(liObj.data("path")+"/" + liObj.data("uuid")+"_" + liObj.data("filename"));
+		    
+		    if(liObj.data("type")){
+		      showImage(path.replace(new RegExp(/\\/g),"/"));
+		    }else {
+		      //download 
+		      self.location ="/download?fileName="+path
+		    }
+		    
+		    
+		  });
+		  
+		  function showImage(fileCallPath){
+			    
+		    alert(fileCallPath);
+		    
+		    $(".bigPictureWrapper").css("display","flex").show();
+		    
+		    $(".bigPicture")
+		    .html("<img src='/display?fileName="+fileCallPath+"' >")
+		    .animate({width:'100%', height: '100%'}, 1000);
+		    
+		  }
 
-			(function() {
-
-				var lpNum = '<c:out value="${get.lpNum}"/>';
-
-				$
-						.getJSON(
-								"/leavePolicy/getAttachList",
-								{
-									lpNum : lpNum
-								},
-								function(arr) {
-									console.log("==============");
-									console.log(arr);
-									var str = "";
-
-									$(arr)
-											.each(
-													function(i, attach) {
-														//image type
-														if (attach.fileType) {
-															var fileCallPath = encodeURIComponent(attach.uploadPath
-																	+ "/s_"
-																	+ attach.uuid
-																	+ "_"
-																	+ attach.fileName);
-
-															str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-															str += "<img src='/display?fileName="
-																	+ fileCallPath
-																	+ "'>";
-															str += "</div>";
-															str + "</li>";
-														} else {
-
-															str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-															str += "<span> "
-																	+ attach.fileName
-																	+ "</span><br/>";
-															str += "<img src='/resources/img/attach.png'></a>";
-															str += "</div>";
-															str + "</li>";
-														}
-													});
-
-									$(".uploadResult ul").html(str);
-
-								});//end getjson	
-			})();
-
-			$(".uploadResult").on(
-					"click",
-					"li",
-					function(e) {
-
-						console.log("view image");
-
-						var liObj = $(this);
-
-						var path = encodeURIComponent(liObj.data("path") + "/"
-								+ liObj.data("uuid") + "_"
-								+ liObj.data("filename"));
-
-						if (liObj.data("type")) {
-							showImage(path.replace(new RegExp(/\\/g), "/"));
-						} else {
-							//download 
-							self.location = "/download?fileName=" + path
-						}
-
-					});
-
-			function showImage(fileCallPath) {
-
-				alert(fileCallPath);
-
-				$(".bigPictureWrapper").css("display", "flex").show();
-
-				$(".bigPicture").html(
-						"<img src='/display?fileName=" + fileCallPath + "' >")
-						.animate({
-							width : '100%',
-							height : '100%'
-						}, 1000);
-
-			}
-
-			$(".bigPictureWrapper").on("click", function(e) {
-				$(".bigPicture").animate({
-					width : '0%',
-					height : '0%'
-				}, 1000);
-				setTimeout(function() {
-					$('.bigPictureWrapper').hide();
-				}, 1000);
-			});
-
+		  $(".bigPictureWrapper").on("click", function(e){
+		    $(".bigPicture").animate({width:'0%', height: '0%'}, 1000);
+		    setTimeout(function(){
+		      $('.bigPictureWrapper').hide();
+		    }, 1000);
+		});
+		  
 			$("#deleteBtn").click(function() {
 				$("#myModal").css("display", "block");
 			})
@@ -382,6 +404,7 @@ body {
 				$("#deleteSubmit").submit();
 			});
 		});//end function
-	</script>
-</body>
-</html>
+	
+	
+</script>
+<%@include file="../includes/footer.jsp"%>

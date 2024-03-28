@@ -1,13 +1,11 @@
+<%@include file="../includes/sideBar.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <style type="text/css">
+
 body {
 	font-family: Arial, sans-serif;
 	background-color: #f8f9fa;
@@ -16,13 +14,14 @@ body {
 }
 
 .container {
-	max-width: 800px;
+	max-width: 1000px;
 	margin: 50px auto;
 	padding: 20px;
 	border: 1px solid #ddd;
 	border-radius: 10px;
 	background-color: #fff;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-top: 80px;
 }
 
 .heading {
@@ -121,7 +120,7 @@ body {
 	padding: 15px 40px;
 	border: none;
 	border-radius: 5px;
-	background-color: #b1b1b1;
+	background-color: rgb(31, 41, 55);
 	color: #fff;
 	text-decoration: none;
 	cursor: pointer;
@@ -203,11 +202,61 @@ body {
     display: none; 
 }
 
+
+.navigation {
+    margin-left: 430px;
+    margin-top: 100px;
+   
+         
+}
+
+
+.navigation div {
+    display: inline;
+    padding-bottom: 10px;
+    margin-right: 50px;
+
+}
+
+.navigation div a {
+    text-decoration: none;
+    color: #a5a5a5;
+    font-weight: bold;
+    display: block; /* a태그는 글자성격 = inline */
+    float: left;
+    font-size: 16px;
+  	font-weight: 900;
+  	line-height: 80px;
+  	padding: 0 30px;
+  	margin-right: 10px;
+  	
+  	
+}
+
+.navigation div a:hover {
+    color: #2900c5; 
+}
+
+#promoteNav{
+ 	color: #333; 
+}
+
+#promoteNav:hover{	
+	color: #2900c5;
+}
+
 </style>
 
-</head>
-<body>
-		<div class="container">
+		<div class="navigation">
+			<div><a href="/">메인페이지 </a></div>
+			<div><a href="/system/annualForm">휴가 일수 부여 설정</a></div>
+			<div><a href="/">권한 부여</a></div>
+			<div><a id="promoteNav" href="/leavePromote/list">휴가 촉진</a></div>
+			<div><a href="/leavePolicy/list">휴가 정책</a></div>
+		</div>
+
+
+	<div class="container">
 		<div class="heading">휴가 정책 게시글</div>
 
 		<div class="info-box">
@@ -245,12 +294,12 @@ body {
 				</div>
 			</div>
 		</div>
-</div>	
-
 	<div class="buttons">
 		<a href="update?lprNum=${get.lprNum }">수정하기</a>
 		<a id="deleteBtn">삭제하기</a>
 	</div>
+</div>	
+
 	
 	<div id="myModal" class="modal">
 		<!-- 모달 내용 -->
@@ -358,5 +407,4 @@ $(function(){
 	
 	
 </script>
-</body>
-</html>
+<%@include file="../includes/footer.jsp"%>

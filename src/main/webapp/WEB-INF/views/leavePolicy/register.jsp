@@ -1,18 +1,17 @@
+<%@include file="../includes/sideBar.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>정책 등록폼</title>
+
+
+ <div class="p-1 sm:ml-64">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <style type="text/css">
 .container {
-	max-width: 600px;
-	margin: 50px auto;
-	padding-left: 70px;
-	padding-right: 70px;
-	padding-top: 20px;
+	max-width: 800px;
+	margin-left:50px;
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-top: 0px;
 	padding-bottom: 30px;
 	border: 1px solid #ddd;
 	border-radius: 5px;
@@ -162,15 +161,68 @@ label{
 #submitBtn:hover {
 	background-color: #5c5e91;
 }
+
+
+.navigation {
+    margin-left: 430px;
+    margin-top: 100px;
+   
+         
+}
+
+
+.navigation div {
+    display: inline;
+    padding-bottom: 10px;
+    margin-right: 50px;
+
+}
+
+.navigation div a {
+    text-decoration: none;
+    color: #a5a5a5;
+    font-weight: bold;
+    display: block; /* a태그는 글자성격 = inline */
+    float: left;
+    font-size: 16px;
+  	font-weight: 900;
+  	line-height: 80px;
+  	padding: 0 30px;
+  	margin-right: 10px;
+  	
+  	
+}
+
+.navigation div a:hover {
+    color: #2900c5; 
+}
+
+#policyNav{
+ 	color: #333; 
+}
+
+#policyNav:hover{	
+	color: #2900c5;
+}
 </style>
-</head>
-<body>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/lang/summernote-ko-KR.js"></script>
 
-	<div class="container">
+
+
+		<div class="navigation">
+			<div><a href="/">메인페이지</a></div>
+			<div><a href="/system/annualForm">휴가 일수 부여 설정</a></div>
+			<div><a href="/">권한 부여</a></div>
+			<div><a href="/leavePromote/list">휴가 촉진</a></div>
+			<div><a id="policyNav" href="/leavePolicy/list">휴가 정책</a></div>
+	</div>
+
+	<div class="border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64">
 		<form role="form" action="register" method="post"
 			enctype="multipart/form-data">
 			<!-- 게시물 정보 입력 부분 -->
@@ -192,11 +244,9 @@ label{
 				
 			 <input id="submitBtn" type="submit" value="등록">
 		</form>
-		
-		
-	
-		
-	<div class="row">
+
+
+<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 
@@ -230,169 +280,146 @@ label{
 	</div>
 	<!-- /.row -->
 		
-</div>
-
+	</div>
 	<script type="text/javascript">
-		$(function() {
+	$(function() {
 
-			var formObj = $("form[role='form']");
+		var formObj = $("form[role='form']");
 
-			$("#submitBtn")
-					.on(
-							"click",
-							function(e) {
-								e.preventDefault();
-								console.log("submit clicked");
-								var str = "";
+		$("#submitBtn").on("click",function(e) {
+					e.preventDefault();
+					console.log("submit clicked");
+					var str = "";
 
-								$(".uploadResult ul li")
-										.each(
-												function(i, obj) {
+					$(".uploadResult ul li").each(
+							function(i, obj) {
 
-													var jobj = $(obj);
+								var jobj = $(obj);
 
-													console.dir(jobj);
-													console
-															.log("-------------------------");
-													console.log(jobj
-															.data("filename"));
+								console.dir(jobj);
+								console.log("-------------------------");
+								console.log(jobj.data("filename"));
 
-													str += "<input type='hidden' name='attachList["
-															+ i
-															+ "].fileName' value='"
-															+ jobj
-																	.data("filename")
-															+ "'>";
-													str += "<input type='hidden' name='attachList["
-															+ i
-															+ "].uuid' value='"
-															+ jobj.data("uuid")
-															+ "'>";
-													str += "<input type='hidden' name='attachList["
-															+ i
-															+ "].uploadPath' value='"
-															+ jobj.data("path")
-															+ "'>";
-													str += "<input type='hidden' name='attachList["
-															+ i
-															+ "].fileType' value='"
-															+ jobj.data("type")
-															+ "'>";
-												});
-
-								console.log(str);
-
-								formObj.append(str).submit();
+								str += "<input type='hidden' name='attachList["
+										+ i + "].fileName' value='"
+										+ jobj.data("filename") + "'>";
+								str += "<input type='hidden' name='attachList["
+										+ i + "].uuid' value='"
+										+ jobj.data("uuid") + "'>";
+								str += "<input type='hidden' name='attachList["
+										+ i + "].uploadPath' value='"
+										+ jobj.data("path") + "'>";
+								str += "<input type='hidden' name='attachList["
+										+ i + "].fileType' value='"
+										+ jobj.data("type") + "'>";
 							});
-			$(".uploadResult").on("click", "button", function(e){
 
-					var click =$(this).closest("li");
-					click.remove();
+					console.log(str);
 					
-			})
+					formObj.append(str).submit();
+				});
 
-			var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-			var maxSize = 5242880; //5MB
+		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		var maxSize = 5242880; //5MB
 
-			function checkExtension(fileName, fileSize) {
+		function checkExtension(fileName, fileSize) {
 
-				if (fileSize >= maxSize) {
-					alert("파일 사이즈 초과");
-					return false;
-				}
-
-				if (regex.test(fileName)) {
-					alert("해당 종류의 파일은 업로드할 수 없습니다.");
-					return false;
-				}
-				return true;
+			if (fileSize >= maxSize) {
+				alert("파일 사이즈 초과");
+				return false;
 			}
 
-			$("input[type='file']").change(function(e) {
-				var formData = new FormData();
-				var inputFile = $("input[name='uploadFile']");
-				var files = inputFile[0].files;
+			if (regex.test(fileName)) {
+				alert("해당 종류의 파일은 업로드할 수 없습니다.");
+				return false;
+			}
+			return true;
+		}
 
-				for (var i = 0; i < files.length; i++) {
-					if (!checkExtension(files[i].name, files[i].size)) {
-						return false;
-					}
-					formData.append("uploadFile", files[i]);
+		$("input[type='file']").change(function(e) {
+			var formData = new FormData();
+			var inputFile = $("input[name='uploadFile']");
+			var files = inputFile[0].files;
+
+			for (var i = 0; i < files.length; i++) {
+				if (!checkExtension(files[i].name, files[i].size)) {
+					return false;
 				}
+				formData.append("uploadFile", files[i]);
+			}
 
-				$.ajax({
-					url : '/uploadAjaxAction',
-					processData : false,
-					contentType : false,
-					data : formData,
-					type : 'POST',
-					dataType : 'json',
-					success : function(result) {
-						console.log(result);
-						showUploadResult(result); //업로드 결과 처리 함수 
+			$.ajax({
+				url : '/uploadAjaxAction',
+				processData : false,
+				contentType : false,
+				data : formData,
+				type : 'POST',
+				dataType : 'json',
+				success : function(result) {
+					console.log(result);
+					showUploadResult(result); //업로드 결과 처리 함수 
 
-					}
-				}); //$.ajax		    
-			});//end change   
-
-			function showUploadResult(uploadResultArr) {
-
-				if (!uploadResultArr || uploadResultArr.length == 0) {
-					return;
 				}
+			}); //$.ajax		    
+		});//end change   
 
-				var uploadUL = $(".uploadResult ul");
+		function showUploadResult(uploadResultArr) {
 
-				var str = "";
+			if (!uploadResultArr || uploadResultArr.length == 0) {
+				return;
+			}
 
-				$(uploadResultArr)
-						.each(
-								function(i, obj) {
+			var uploadUL = $(".uploadResult ul");
 
-									if (obj.image) {
-										var fileCallPath = encodeURIComponent(obj.uploadPath
-												+ "/s_"
-												+ obj.uuid
-												+ "_"
-												+ obj.fileName);
-										str += "<li data-path='"+obj.uploadPath+"'";
+			var str = "";
+
+			$(uploadResultArr)
+					.each(
+							function(i, obj) {
+
+								if (obj.image) {
+									var fileCallPath = encodeURIComponent(obj.uploadPath
+											+ "/s_"
+											+ obj.uuid
+											+ "_"
+											+ obj.fileName);
+									str += "<li data-path='"+obj.uploadPath+"'";
 					str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 					str +" ><div>";
-										str += "<span> " + obj.fileName
-												+ "</span>";
-										str += "<button type='button' data-file=\'"+fileCallPath+"\' "
+									str += "<span> " + obj.fileName + "</span>";
+									str += "<button type='button' data-file=\'"+fileCallPath+"\' "
 					str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-										str += "<img src='/display?fileName="
-												+ fileCallPath + "'>";
-										str += "</div>";
-										str + "</li>";
-									} else {
-										var fileCallPath = encodeURIComponent(obj.uploadPath
-												+ "/"
-												+ obj.uuid
-												+ "_"
-												+ obj.fileName);
-										var fileLink = fileCallPath.replace(
-												new RegExp(/\\/g), "/");
+									str += "<img src='/display?fileName="
+											+ fileCallPath + "'>";
+									str += "</div>";
+									str + "</li>";
+								} else {
+									var fileCallPath = encodeURIComponent(obj.uploadPath
+											+ "/"
+											+ obj.uuid
+											+ "_"
+											+ obj.fileName);
+									var fileLink = fileCallPath.replace(
+											new RegExp(/\\/g), "/");
 
-										str += "<li "
+									str += "<li "
 					str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
-										str += "<span> " + obj.fileName
-												+ "</span>";
-										str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
+									str += "<span> " + obj.fileName + "</span>";
+									str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
 					str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-										str += "<img src='/resources/img/attach.png'></a>";
-										str += "</div>";
-										str + "</li>";
-									}
+									str += "<img src='/resources/img/attach.png'></a>";
+									str += "</div>";
+									str + "</li>";
+								}
 
-								});
+							});
 
-				uploadUL.append(str);
-			}
-		})
+			uploadUL.append(str);
+		}
+
+	})
 	</script>
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(document).ready(function() {
 		
 		$('#summernote').summernote({
@@ -407,7 +434,6 @@ label{
 	
 	
 	});
-	
-</script>
-</body>
-</html>
+	</script>
+	</div>
+<%@include file="../includes/footer.jsp"%>

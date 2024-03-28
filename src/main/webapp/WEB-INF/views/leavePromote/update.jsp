@@ -1,10 +1,9 @@
+<%@include file="../includes/sideBar.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>촉진 수정폼</title>
+
+
+ <div class="p-1 sm:ml-64">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <style type="text/css">
 .container {
@@ -162,6 +161,47 @@ label {
 #submitBtn:hover {
 	background-color: #5c5e91;
 }
+.navigation {
+    margin-left: 430px;
+    margin-top: 100px;
+   
+         
+}
+
+
+.navigation div {
+    display: inline;
+    padding-bottom: 10px;
+    margin-right: 50px;
+
+}
+
+.navigation div a {
+    text-decoration: none;
+    color: #a5a5a5;
+    font-weight: bold;
+    display: block; /* a태그는 글자성격 = inline */
+    float: left;
+    font-size: 16px;
+  	font-weight: 900;
+  	line-height: 80px;
+  	padding: 0 30px;
+  	margin-right: 10px;
+  	
+  	
+}
+
+.navigation div a:hover {
+    color: #2900c5; 
+}
+
+#promoteNav{
+ 	color: #333; 
+}
+
+#promoteNav:hover{	
+	color: #2900c5;
+}
 </style>
 </head>
 <body>
@@ -173,7 +213,16 @@ label {
 		src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/lang/summernote-ko-KR.js"></script>
 
 
-	<div class="container">
+		<div class="navigation">
+			<div><a href="/">메인페이지 </a></div>
+			<div><a href="/system/annualForm">휴가 일수 부여 설정</a></div>
+			<div><a href="/">권한 부여</a></div>
+			<div><a id="promoteNav" href="/leavePromote/list">휴가 촉진</a></div>
+			<div><a href="/leavePolicy/list">휴가 정책</a></div>
+		</div>
+
+
+	<div class="border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64">
 		<form role="form" action="update" method="Post">
 			<div>
 				<input type="text" id="title" name="title" value="${get.title }">
@@ -418,5 +467,4 @@ $(document).ready(function() {
 
 		});
 	</script>
-</body>
-</html>
+<%@include file="../includes/footer.jsp"%>
