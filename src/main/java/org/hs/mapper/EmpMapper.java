@@ -24,4 +24,6 @@ public interface EmpMapper{
 	public String EmpjoinDept();
 	
 	public int getTotalCount(EmpCriteria cri);
+	
+	public void authdelete(String empNum);
 }

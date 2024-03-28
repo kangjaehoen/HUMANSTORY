@@ -47,7 +47,7 @@ public class EmpController {
 		public void get(@RequestParam("empNum") String empNum,@ModelAttribute("cri")EmpCriteria cri, Model model) {
 		
 		log.info("/get or modify");
-//		model.addAttribute("emp",service.get(empNum));
+		model.addAttribute("emp",service.get(empNum));
 	}
 	
 	

@@ -66,7 +66,8 @@
 				<div class="form-group">
 				  <label>hireDate</label> 
 				  <input class="form-control" name='hireDate' 
-				    value='<c:out value="${emp.hireDate }"/>' >
+				    <%-- value='<c:out value="${emp.hireDate }" --%>
+				      value='<fmt:formatDate value="${emp.hireDate}" pattern="yyyy/MM/dd" />' />
 				</div>
 				
 				<div class="form-group">
@@ -98,15 +99,15 @@
 				  <input class="form-control" name='birthDate' 
 				    value='<c:out value="${emp.birthDate }"/>' >
 				</div>
-				
+				<%-- 
 				<div class="form-group">
 				  <label>department</label> 
 				  <input class="form-control" name='department' 
 				    value='<c:out value="${emp.department.deptName }"/>' >
 				</div>
+				 --%>
 				
-				
-				  <button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
+				  <button type="submit" data-oper='modify' class="btn btn-secondary">Modify</button>
 				  <button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
 				  <button type="submit" data-oper='list' class="btn btn-info">List</button>
 		 		  

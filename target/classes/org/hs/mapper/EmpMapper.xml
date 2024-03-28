@@ -19,7 +19,7 @@
 
 	<select id="getList" resultType="org.hs.domain.EmployeeVO">
 	<![CDATA[
-		select*from employee where empNum>0
+		select*from employee where adminNum>0
 	]]>
 	</select>
 
@@ -146,5 +146,8 @@
 	<delete id="delete">
 		delete employee where empNum=#{empNum}
 	</delete>
-
+	
+	<delete id="authdelete">
+		delete employee_auth where empNum=#{empNum}
+	</delete>
 </mapper>

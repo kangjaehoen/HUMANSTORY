@@ -40,6 +40,7 @@ public class EmpServiceImpl implements EmpService {
 
 	@Override
 	public boolean remove(String empNum) {
+		mapper.authdelete(empNum);
 		return mapper.delete(empNum)==1;
 	}
 
