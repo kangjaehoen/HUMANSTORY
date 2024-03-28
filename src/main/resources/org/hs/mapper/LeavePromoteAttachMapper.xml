@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="org.hs.mapper.LeavePromoteAttachMapper">
+  
+  <insert id="insert" parameterType="org.hs.domain.PromoteAttachVO">
+        insert into PromoteAttach (uuid, uploadpath, filename,
+        filetype, lprNum)
+        values (#{uuid}, #{uploadPath}, #{fileName},
+        #{fileType}, #{lprNum} )
+    </insert>
+    
+    
+    <select id="findByBno"
+             resultType="org.hs.domain.PromoteAttachVO">
+        select * from PromoteAttach where lprNum = #{lprNum}
+    </select>
+    
+
+    
+    <delete id="deleteAll">
+    	delete from PromoteAttach where lprNum = #{lprNum}
+    </delete>
+    
+</mapper>
+  
+  
+  
+  

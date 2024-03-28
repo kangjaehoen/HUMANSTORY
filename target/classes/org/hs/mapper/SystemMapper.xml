@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hs.mapper.SystemMapper">
+
+
+	<insert id="insertEmpInfo">
+		INSERT INTO employees (empNum, empName, pw, job,
+		phoneNum,
+		annualLeaveNum,workDate,birthDate, adminNum, authNum,
+		deptNum)
+		VALUES (empNum_seq.NEXTVAL, #{empName},#{pw}, #{job},
+		#{phoneNum},
+		#{annualLeaveNum}, #{workDate},#{birthDate}, #{adminNum},
+		#{authNum},
+		#{deptNum})
+	</insert>
+
+	<insert id="insertLeaveInfo">
+		INSERT INTO employees (leaveNum, leaveType,
+		leaveReason, proposalDate,
+		startDate,
+		endDate,leaveGrantDay)
+		VALUES
+		(leaveNum_seq.NEXTVAL, #{empName},#{pw}, #{job},
+		#{phoneNum},
+		#{annualLeaveNum}, #{workDate},#{birthDate}, #{adminNum},
+		#{authNum},
+		#{deptNum})
+	</insert>
+
+	<select id="getEmployeesToUpdate"
+		resultType="org.hs.domain.EmployeeVO" statementType="STATEMENT">
+		SELECT * FROM
+		employees
+		WHERE TO_CHAR(SYSDATE, 'MMDD') = '0101' AND workDate > 365
+	</select>
+
+
+	<!-- <update id="updateAnnualLeave"> UPDATE employees e SET e.annualLeaveNum 
+		= CASE WHEN e.workDate >= 365 THEN CASE WHEN e.workDate >= 1095 THEN LEAST(25, 
+		(#{annualNum}+1) + FLOOR(((e.workDate - 1095) / 365))) ELSE LEAST(#{annualNum}) 
+		END ELSE CASE WHEN TO_CHAR(SYSDATE, 'MMDD') = #{leaveDay} THEN #{annualNum} 
+		ELSE FLOOR(months_between(SYSDATE, e.hireDate)) END END WHERE e.empNum IN 
+		( SELECT e2.empNum FROM employees e2 INNER JOIN LeaveRecords lr ON e2.empNum 
+		= lr.empNum INNER JOIN Leave l ON lr.leaveNum = l.leaveNum WHERE TO_CHAR(SYSDATE, 
+		'MMDD') = #{leaveDay} ) </update> -->
+
+	
+	<update id="updateAnnualLeave">
+	<![CDATA[ 
+		UPDATE employees
+			SET annualLeaveNum =
+				CASE
+				WHEN hireDate <= SYSDATE - 365 THEN
+					CASE
+						WHEN hireDate <= SYSDATE - 1095 THEN
+						LEAST(25, (#{annualNum}+1) + FLOOR(((SYSDATE - hireDate - 1095) / 730)))	
+					ELSE LEAST(#{annualNum})	
+				END
+					ELSE
+					CASE
+						WHEN TO_CHAR(SYSDATE, 'MMDD') = #{leaveDay} THEN (#{annualNum})
+					ELSE FLOOR(months_between(SYSDATE, hireDate))
+						END
+						END	
+					WHERE TO_CHAR(SYSDATE, 'MMDD') = #{leaveDay}
+	]]>
+	</update>
+
+
+</mapper>

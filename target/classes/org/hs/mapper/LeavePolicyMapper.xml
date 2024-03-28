@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hs.mapper.LeavePolicyMapper">
+
+	<insert id="insert">
+		<selectKey keyProperty="lpNum" order="BEFORE"
+			resultType="int">
+			select lpNum_seq.nextval from dual
+		</selectKey>
+
+		insert into leavePolicy(lpNum, empNum, title,
+		detail,
+		registerDate)
+		values
+		(#{lpNum},#{empNum},#{title},#{detail},sysdate)
+	</insert>
+
+	<select id="getList" resultType="org.hs.domain.LeavePolicyVO">
+		<![CDATA[
+		SELECT lpNum, empNum, title, detail, registerDate
+		FROM(
+		SELECT /*+INDEX_DESC(leavePolicy PK_leavePolicy) */
+		rownum rn, lpNum, empNum,title, detail, registerDate
+		FROM leavePolicy
+		WHERE rownum<= #{pageNum} * #{amount}
+		)
+		WHERE rn> (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+
+	<select id="getDetail" resultType="org.hs.domain.LeavePolicyVO">
+		SELECT * FROM leavePolicy
+		WHERE lpNum=#{lpNUm}
+	</select>
+
+	<update id="update">
+		UPDATE leavePolicy SET title=#{title},
+		detail=#{detail},
+		registerDate=sysdate WHERE lpNum=#{lpNum}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM leavePolicy WHERE lpNum=#{lpNum}
+	</delete>
+
+	<select id="listTotalCount" resultType="int">
+		select count(*) from
+		leavePolicy
+	</select>
+
+
+
+
+</mapper>

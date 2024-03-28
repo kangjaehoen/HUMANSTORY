@@ -36,6 +36,8 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	 
+	  
 	<mybatis-spring:scan base-package="org.hs.mapper"/>
 	
 	<context:component-scan base-package="org.hs.service"/>
